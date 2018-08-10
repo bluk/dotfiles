@@ -1,0 +1,70 @@
+[core]
+	whitespace = trailing-space,space-before-tab
+	autocrlf = input
+	excludesfile = ~/.gitignore_global
+[color]
+	branch = auto
+	diff = auto
+	grep = auto
+	interactive = auto
+	status = auto
+	ui = auto
+[alias]
+	localignore = update-index --assume-unchanged
+	localunignore = update-index --no-assume-unchanged
+	svn-diff = !git-svn-diff.sh
+	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
+	stash-all = stash save --include-untracked
+	glog = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) -- %GS <%an>%Creset'
+	co = checkout
+	list-branches = branch --sort=committerdate
+	setup-fetching-prs = !git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*' && git fetch origin
+	logsig = log --show-signature
+	delete-merged-branches = !git branch --merged master | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
+	setup-gpg-bluk = !git config user.name 'Bryant Luk' && git config user.email 'bryant.luk@bryantluk.com' && git config user.signingKey 0x640BB0CB9E01E8B7
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[diff]
+	tool = Kaleidoscope
+[difftool]
+	prompt = false
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
+[mergetool]
+	prompt = false
+[merge]
+	tool = Kaleidoscope
+	conflictstyle = diff3
+[filter "media"]
+	clean = git media clean %f
+	smudge = git media smudge %f
+	required = true
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gpg]
+	program = gpg
+[status]
+	showUntrackedFiles = all
+[commit]
+	gpgSign = true
+[user]
+	name = Bryant Luk
+	email = bryant.luk@bryantluk.com
+[http]
+	cookiefile = ~/.gitcookies
