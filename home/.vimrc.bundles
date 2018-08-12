@@ -42,6 +42,7 @@ endif
 Plug 'junegunn/fzf.vim', {'commit': '990834ab6cb86961e61c55a8e012eb542ceff10e'}
 Plug 'kana/vim-textobj-user'
 Plug 'kchmck/vim-coffee-script'
+Plug 'keith/swift.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'markcornick/vim-bats'
 Plug 'mattn/emmet-vim'
@@ -71,6 +72,7 @@ Plug 'vim-scripts/Align'
 Plug 'vim-scripts/VimClojure'
 Plug 'vim-scripts/mako.vim'
 Plug 'vim-scripts/matchit.zip'
+Plug 'vim-syntastic/syntastic'
 Plug 'voxpupuli/vim-puppet', { 'commit': 'e88c19bf10763b30f86b7417677f59a9c9487fa2' }
 
 if v:version >= 800 || has('nvim')

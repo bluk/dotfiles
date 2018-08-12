@@ -117,6 +117,9 @@ autocmd FileType java setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 " C#
 autocmd FileType cs setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 
+" Swift
+autocmd FileType swift setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
+
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 
@@ -348,3 +351,18 @@ function! MyTabLabel(n)
 endfunction
 
 set tabline=%!MyTabLine()
+
+" Syntastic
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Swift
+
+let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
