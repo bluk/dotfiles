@@ -24,6 +24,7 @@ fi
 # Aliases
 
 alias export-credentials=". $HOME/.local_config/credentials.sh"
+alias dockernotary="notary -s https://notary.docker.io -d ~/.docker/trust"
 alias ll="ls -l"
 alias la="ls -la"
 
@@ -44,7 +45,7 @@ alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
 ## Go
 
 export GOPATH=~/Code/go
-export PATH=$PATH:$GOPATH/bin
+export PATH=$GOPATH/bin:$PATH
 
 ## Python
 
@@ -62,6 +63,10 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 export PATH=$PATH:~/node_modules/.bin
 export PATH=$PATH:~/.npm-global/bin
+
+# Docker
+
+export DOCKER_CONTENT_TRUST=1
 
 # Switch to GPG Agent for SSH
 
