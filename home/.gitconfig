@@ -19,6 +19,8 @@
 	glog-full = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) -- %GS -- %an <%ae> -- %cn <%ce> %Creset'
 	co = checkout
 	list-branches = branch --sort=committerdate
+	submodule-co = submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)'
+	submodule-update = submodule update --recursive --remote
 	setup-fetching-prs = !git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*' && git fetch origin
 	logsig = log --show-signature
 	delete-merged-branches = !git branch --merged master | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
