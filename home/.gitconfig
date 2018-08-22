@@ -15,7 +15,8 @@
 	svn-diff = !git-svn-diff.sh
 	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
 	stash-all = stash save --include-untracked
-	glog = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) -- %GS <%an>%Creset'
+	glog = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr)'
+	glog-full = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) -- %GS -- %an <%ae> -- %cn <%ce> %Creset'
 	co = checkout
 	list-branches = branch --sort=committerdate
 	setup-fetching-prs = !git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*' && git fetch origin
