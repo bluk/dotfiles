@@ -64,6 +64,12 @@ eval "$(nodenv init -)"
 export PATH=$PATH:~/node_modules/.bin
 export PATH=$PATH:~/.npm-global/bin
 
+## Python
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
 # Docker
 
 export DOCKER_CONTENT_TRUST=1
