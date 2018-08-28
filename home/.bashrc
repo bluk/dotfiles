@@ -74,10 +74,6 @@ eval "$(pyenv virtualenv-init -)"
 
 export DOCKER_CONTENT_TRUST=1
 
-# Helm
-
-source <(helm completion bash)
-
 # Switch to GPG Agent for SSH
 
 function switch_gpg_agent_for_ssh
