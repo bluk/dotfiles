@@ -121,6 +121,7 @@ function check_terraform_workspace_and_git_branch
 
 alias tfp="check_terraform_workspace_and_git_branch 'terraform plan -out=plan.changes'"
 alias tfa="check_terraform_workspace_and_git_branch 'terraform apply plan.changes'"
+alias tfi="terraform init -backend-config=backend.secret.tfvars"
 
 # Source local changes
 
