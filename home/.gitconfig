@@ -71,3 +71,5 @@
 	email = bryant.luk@bryantluk.com
 [http]
 	cookiefile = ~/.gitcookies
+[credential "https://source.developers.google.com"]
+	helper = gcloud.sh
