@@ -19,7 +19,7 @@
 	glog-full = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue) -- %GS -- %an <%ae> -- %cn <%ce> %Creset'
 	co = checkout
 	list-branches = branch --sort=committerdate
-	submodule-co = submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master)'
+	submodule-co = submodule foreach -q --recursive 'git checkout $(git config -f $toplevel/.gitmodules submodule.$name.branch || echo master) && git pull'
 	submodule-update = submodule update --recursive --remote
 	submodule-init = submodule foreach --recursive 'git submodule init'
 	submodule-fetch-all = submodule foreach --recursive 'git fetch --all'
