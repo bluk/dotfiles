@@ -44,7 +44,7 @@ alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
 
 ## Go
 
-export GOPATH=~/Code/go
+export GOPATH=~/Code/go:~/Code/monorepo/infrastructure/autobot/
 export PATH=$GOPATH/bin:$PATH
 
 ## Python
