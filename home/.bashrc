@@ -44,7 +44,7 @@ alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
 
 ## Go
 
-export GOPATH=~/Code/go:~/Code/monorepo/infrastructure/autobot/
+export GOPATH=~/Code/go:~/Code/monorepo/infrastructure/autobot/:~/Code/monorepo/go/fdb
 export PATH=$GOPATH/bin:$PATH
 
 ## Python
@@ -122,6 +122,9 @@ function check_terraform_workspace_and_git_branch
 alias tfp="check_terraform_workspace_and_git_branch 'terraform plan -out=plan.changes'"
 alias tfa="check_terraform_workspace_and_git_branch 'terraform apply plan.changes'"
 alias tfi="terraform init -backend-config=backend.secret.tfvars"
+
+alias fdbstop="sudo launchctl unload -w /Library/LaunchDaemons/com.foundationdb.fdbmonitor.plist"
+alias fdbstart="sudo launchctl load -w /Library/LaunchDaemons/com.foundationdb.fdbmonitor.plist"
 
 # Source local changes
 
