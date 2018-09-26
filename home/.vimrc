@@ -14,7 +14,10 @@ if &t_Co > 2
 	set bg=dark
 	syntax on
 	set hlsearch
-	colorscheme vividchalk
+	try
+		colorscheme vividchalk
+	catch /^Vim\%((\a\+)\)\=:E185/
+	endtry
 endif
 
 map <silent> <LocalLeader>nh :nohls<CR>
@@ -198,8 +201,12 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
 " Highlight too-long lines
 autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%126v.*/
-highlight LineLengthError ctermbg=black guibg=black
-autocmd ColorScheme * highlight LineLengthError ctermbg=black guibg=black
+highlight LineLengthError ctermbg=red guibg=red
+autocmd ColorScheme * highlight LineLengthError ctermbg=red guibg=red
+
+" Change color of comments
+highlight Comment ctermfg=lightblue
+autocmd ColorScheme * highlight Comment ctermfg=lightblue guifg=lightblue
 
 let g:VimuxUseNearestPane = 1
 
