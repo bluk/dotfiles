@@ -12,7 +12,6 @@
 [alias]
 	localignore = update-index --assume-unchanged
 	localunignore = update-index --no-assume-unchanged
-	svn-diff = !git-svn-diff.sh
 	ksreview = "!f() { local SHA=${1:-HEAD}; local BRANCH=${2:-master}; if [ $SHA == $BRANCH ]; then SHA=HEAD; fi; git difftool -y -t Kaleidoscope $BRANCH...$SHA; }; f"
 	stash-all = stash save --include-untracked
 	glog = log --graph --pretty=format:'%Cred%h%Creset - %G? -%C(yellow)%d%Creset %s %Cgreen(%cr)'
