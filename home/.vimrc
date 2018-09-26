@@ -14,6 +14,7 @@ if &t_Co > 2
 	set bg=dark
 	syntax on
 	set hlsearch
+	colorscheme vividchalk
 endif
 
 map <silent> <LocalLeader>nh :nohls<CR>
@@ -31,8 +32,6 @@ set backupcopy=yes " Setting backup copy preserves file inodes, which are needed
 
 " For debugger symbols and the like
 " set signcolumn=yes
-
-" colorscheme vibrantink
 
 filetype on
 filetype indent on
@@ -83,15 +82,14 @@ set nosmartindent
 autocmd FileType c,cpp,slang setlocal cindent
 autocmd FileType c setlocal formatoptions+=ro
 autocmd FileType perl setlocal smartindent
-autocmd FileType ruby setlocal smartindent tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
-autocmd FileType eruby setlocal smartindent tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType css setlocal smartindent expandtab
 autocmd FileType html setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType xml setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
-autocmd FileType javascript  setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType make setlocal noexpandtab shiftwidth=4
 
 " Ruby
+autocmd FileType ruby setlocal smartindent tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
+autocmd FileType eruby setlocal smartindent tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType ruby,eruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType ruby,eruby setlocal commentstring=#\ %s
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
@@ -105,6 +103,7 @@ autocmd FileType ruby runtime ruby_mappings.vim
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP smartindent tabstop=4 shiftwidth=4 softtabstop=4
 
 " JavaScript
+autocmd FileType javascript setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType javascript setlocal commentstring=//\ %s
 
 " Python
@@ -121,10 +120,7 @@ autocmd FileType cs setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 autocmd FileType swift setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 
 " Autoremove trailing spaces when saving the buffer
-autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
-
-autocmd FileType tex setlocal textwidth=78
-autocmd FileType tex setlocal spell spelllang=en_us
+autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby,swift autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 autocmd BufNewFile,BufRead *.txt setlocal textwidth=78
 autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
@@ -211,7 +207,7 @@ let g:VimuxUseNearestPane = 1
 map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
 map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
 map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
-map <silent> <LocalLeader>vx :wa<CR> :VimuxClosePanes<CR>
+map <silent> <LocalLeader>vx :wa<CR> :VimuxCloseRunner<CR>
 map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
 vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
 nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
@@ -279,15 +275,6 @@ let g:rails_projections = {
       \   }
       \ }
 
-if exists(':RainbowParenthesesToggle')
-  autocmd VimEnter *       RainbowParenthesesToggle
-  autocmd Syntax   clojure RainbowParenthesesLoadRound
-  autocmd Syntax   clojure RainbowParenthesesLoadSquare
-  autocmd Syntax   clojure RainbowParenthesesLoadBraces
-endif
-
-let g:puppet_align_hashes = 0
-
 let g:vim_markdown_folding_disabled = 1
 
 let g:go_fmt_command = "goimports"
@@ -301,8 +288,6 @@ map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
 map <silent> <LocalLeader>rt :!ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj<CR>
-
-map <silent> <LocalLeader>cj :!clj %<CR>
 
 map <silent> <LocalLeader>gd :e product_diff.diff<CR>:%!git diff<CR>:setlocal buftype=nowrite<CR>
 

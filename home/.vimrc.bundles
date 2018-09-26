@@ -39,6 +39,7 @@ Plug 'uarun/vim-protobuf'
 Plug 'vim-scripts/Align'
 Plug 'vim-syntastic/syntastic'
 Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-vividchalk'
 
 if v:version >= 800 || has('nvim')
   Plug 'w0rp/ale'
