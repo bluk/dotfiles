@@ -1,6 +1,7 @@
 export CLICOLOR=1
 export LSCOLORS=gxfxCxDxbxegedabagacad
 export EDITOR=vim
+export VISUAL=vim
 export PAGER=less
 
 set -o vi
