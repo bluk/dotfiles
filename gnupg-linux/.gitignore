@@ -1,0 +1,10 @@
+trustdb.gpg
+sshcontrol
+pubring.kbx*
+reader_0.status
+private-keys-v1.d/
+crls.d/
+tofu.db
+openpgp-revocs.d/
+random_seed
+dirmngr.conf

@@ -88,6 +88,11 @@ function switch_gpg_agent_for_ssh
       export OLD_SSH_AUTH_SOCK=$SSH_AUTH_SOCK
     fi
     export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+  elif [ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]; then
+    if [ -z "$OLD_SSH_AUTH_SOCK" ]; then
+      export OLD_SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+    fi
+    export SSH_AUTH_SOCK="/run/user/${UID}/gnupg/S.gpg-agent.ssh"
   else
     echo "$HOME/.gnupg/S.gpg-agent.ssh doesn't exist. Is gpg-agent running ?"
   fi
