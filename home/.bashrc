@@ -10,7 +10,7 @@ export DYLD_LIBRARY_PATH="/usr/local/lib/:$DYLD_LIBRARY_PATH"
 
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
-if [ -f "/usr/local//etc/bash_completion.d/git-prompt.sh" ]; then
+if [ -f "/usr/local/etc/bash_completion.d/git-prompt.sh" ]; then
   source "/usr/local/etc/bash_completion.d/git-prompt.sh"
 
   export GIT_PS1_SHOWDIRTYSTATE="true"
