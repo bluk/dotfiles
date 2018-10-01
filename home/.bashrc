@@ -1,3 +1,7 @@
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  gpgconf --create-socketdir || true
+fi
+
 export CLICOLOR=1
 export LSCOLORS=gxfxCxDxbxegedabagacad
 export EDITOR=vim
