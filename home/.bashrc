@@ -109,7 +109,9 @@ function switch_ssh_agent_for_ssh
   fi
 }
 
-switch_gpg_agent_for_ssh
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  switch_gpg_agent_for_ssh
+fi
 
 # Fuzzy Finder
 
