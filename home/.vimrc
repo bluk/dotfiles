@@ -358,3 +358,6 @@ let g:syntastic_check_on_wq = 0
 " Swift
 
 let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+
+" :w!! to write out a file with sudo
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
