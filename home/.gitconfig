@@ -26,6 +26,9 @@
 	logsig = log --show-signature
 	delete-merged-branches = !git branch --merged master | grep -v -e 'master' -e '\\*' | xargs -n 1 git branch -d && git remote prune origin
 	setup-gpg-bluk = !git config user.name 'Bryant Luk' && git config user.email 'bryant.luk@bryantluk.com' && git config user.signingKey 0x640BB0CB9E01E8B7
+  merge-sig = merge --verify-signatures
+  merge-pr = merge --no-ff -S
+  pull-sig = pull --verify-signatures
 [credential]
 	helper = osxkeychain
 [push]
