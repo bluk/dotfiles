@@ -342,7 +342,7 @@ function! MyTabLabel(n)
   return file
 endfunction
 
-set tabline=%!MyTabLine()
+" set tabline=%!MyTabLine()
 
 " Syntastic
 
