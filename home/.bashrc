@@ -85,7 +85,7 @@ export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
 
 ## Go
 
-export GOPATH=~/Code/go:~/Code/monorepo/infrastructure/autobot/:~/Code/monorepo/go/fdb
+export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
 ## Python
