@@ -25,7 +25,12 @@ map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 
 set number
-" set relativenumber
+set relativenumber
+augroup toggle_relative_number
+  autocmd InsertEnter * :setlocal norelativenumber
+  autocmd InsertLeave * :setlocal relativenumber
+augroup END
+
 set tabstop=2
 set shiftwidth=2
 set autoindent
