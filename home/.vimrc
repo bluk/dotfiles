@@ -10,20 +10,61 @@ endif
 
 compiler ruby
 
+filetype on
+set encoding=utf-8
+
+filetype plugin on
+
 if &t_Co > 2
 	set bg=dark
 	syntax on
-	set hlsearch
 	try
 		colorscheme vividchalk
 	catch /^Vim\%((\a\+)\)\=:E185/
 	endtry
 endif
 
+" Double // is necessary to use absolute file path (in case there's two
+" README.md files for instance)
+set backupdir=~/.vim/backup//
+set backupcopy=yes " Setting backup copy preserves file inodes, which are needed for Docker file mounting
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+set undofile
+set undoreload=10000 "maximum number lines to save for undo on a buffer reload
+set undolevels=1000 "maximum number of changes that can be undone
+
+set history=10000
+
+" Indention, tabs, spaces, wordwrapping
+filetype indent on
+" filetype indent on removes the need for set smartindent
+" set nosmartindent
+set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+set backspace=eol,start,indent
+
+set nowrap
+
+set textwidth=0
+set pastetoggle=<F2>
+map <silent> <LocalLeader>pp :set paste!<CR>
+
+" Pasting over a selection does not replace the clipboard
+xnoremap <expr> p 'pgv"'.v:register.'y'
+
+" Highlighting
+set hlsearch
 map <silent> <LocalLeader>nh :nohls<CR>
+set ignorecase
+set incsearch
+set smartcase
 
-map <silent> <LocalLeader>bd :bufdo :bd<CR>
-
+" Gutter numbers
 set number
 set relativenumber
 augroup toggle_relative_number
@@ -31,46 +72,9 @@ augroup toggle_relative_number
   autocmd InsertLeave * :setlocal relativenumber
 augroup END
 
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set softtabstop=2
-set expandtab
-set pastetoggle=<F2>
-set backupcopy=yes " Setting backup copy preserves file inodes, which are needed for Docker file mounting
-
 " For debugger symbols and the like
-" set signcolumn=yes
-
-filetype on
-filetype indent on
-filetype plugin on
-
-set ignorecase
-set incsearch
-set smartcase
-
-set backspace=eol,start,indent
-set ruler
-
-set nowrap
-
-set history=10000
-
-set showcmd
-
-set autoread
-
-set wildmenu
-
-set tabpagemax=40
-
-set completeopt=longest,menuone
-set complete-=t " Don't use tags for autocomplete
-
-set encoding=utf-8
-
-set exrc
+set signcolumn=yes
+highlight SignColumn ctermfg=15 ctermbg=232 guifg=#DDEEFF guibg=#222222
 
 " Folds
 set foldenable
@@ -92,6 +96,93 @@ augroup auto_save_folds
         \|  endif
 augroup END
 
+" Highlight trailing whitespace
+map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
+
+function! Trim()
+  %s/\s*$//
+  ''
+endfunction
+command! -nargs=0 Trim :call Trim()
+nnoremap <silent> <Leader>cw :Trim<CR>
+
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+" Highlight too-long lines
+autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%120v.*/
+highlight LineLengthError ctermbg=red guibg=red
+autocmd ColorScheme * highlight LineLengthError ctermbg=red guibg=red
+
+" Change color of comments
+highlight Comment ctermfg=lightblue
+autocmd ColorScheme * highlight Comment ctermfg=lightblue guifg=lightblue
+
+" Buffers
+set hidden
+map <silent> <LocalLeader>bd :bufdo :bd<CR>
+map <C-K> :bprev<CR>
+map <C-J> :bnext<CR>
+
+" Tabs
+set tabpagemax=40
+
+" Mouse
+set mouse=
+set ttymouse=
+
+" Automatically read unchanged files if changed elsewhere
+set autoread
+
+" Minimum number of lines around scrolling
+set scrolloff=5
+set sidescrolloff=5
+
+" Show matching bracket, brace, etc.
+set showmatch
+
+" Auto-completion
+set completeopt=longest,menuone
+set complete-=t " Don't use tags for autocomplete
+
+map <silent> <LocalLeader>rt :!ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj<CR>
+
+" Status
+set laststatus=2
+set statusline=
+set statusline+=%<\                       " cut at start
+set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
+set statusline+=%-40F\                    " full path
+set statusline+=%=                        " seperate between right- and left-aligned
+set statusline+=%10(C(%c%V)%)\            " column and virtual column
+set statusline+=%6(L(%l/%L)%)\            " line
+set statusline+=%4(B(%o)%)\               " byte
+set statusline+=%P\                       " percentage of file
+set statusline+=%1*[%{&ff}]%*-%1*%y%*\    " file type
+set statusline+=
+
+" Bottom gutter
+set showcmd
+set ruler
+
+" Show command options with TAB
+set wildmenu
+
+" Ignore files
+set wildignore +=tmp,.git,.swp,.svn,bower_components,node_modules,*.class,*.jar,*.gif,*.png,*.jpg,*.bak,*.pyc,vendor,*.o,*.class,*.lo
+
+" Read project directory's .vimrc file
+" set exrc
+
+" :w!! to write out a file with sudo
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" CTRL-J/K navigation in popups
+inoremap <expr> <c-j> (pumvisible()?"\<C-n>":"\<c-j>")
+inoremap <expr> <c-k> (pumvisible()?"\<C-p>":"\<c-k>")
+
 " Remaps Ctrl+N to keep menu highlighted
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
@@ -100,32 +191,16 @@ inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
 inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 
-" Highlight over 80 characters
-if exists('+colorcolumn')
-    set colorcolumn=80,120
-else
-    match ErrorMsg '\%>120.\+'
-endif
-
+" Cursorline
 set cursorline
 highlight CursorLine term=none cterm=none ctermbg=235 guibg=#333333
 
-" Double // is necessary to use absolute file path (in case there's two
-" README.md files for instance)
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swap//
-set undodir=~/.vim/undo//
-set undofile
-set undoreload=10000 "maximum number lines to save for undo on a buffer reload
-set undolevels=1000 "maximum number of changes that can be undone
+" Netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
 
-set wildignore +=tmp,.git,.*.swp,.svn,bower_components,node_modules,*.class,*.jar,*.gif,*.png,*.jpg,*.bak,*.pyc,vendor,*.o,*.class,*.lo
-
-set showmatch
-set hidden
-set textwidth=0
-set nosmartindent
-
+" File types
 autocmd FileType c,cpp,slang setlocal cindent
 autocmd FileType c setlocal formatoptions+=ro
 autocmd FileType perl setlocal smartindent
@@ -133,6 +208,7 @@ autocmd FileType css setlocal smartindent expandtab
 autocmd FileType html setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType xml setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType make setlocal noexpandtab shiftwidth=4
+autocmd FileType sh setlocal commentstring=#\ %s
 
 " Ruby
 autocmd FileType ruby setlocal smartindent tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
@@ -142,8 +218,6 @@ autocmd FileType ruby,eruby setlocal commentstring=#\ %s
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-
-autocmd FileType sh setlocal commentstring=#\ %s
 autocmd FileType ruby runtime ruby_mappings.vim
 
 " PHP
@@ -175,23 +249,11 @@ autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
 " Run terraform fmt on terraform files
 autocmd BufWritePre *.tf call terraform#fmt()
 
+" Markdown
 augroup markdown
   au!
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
-
-" Status
-set laststatus=2
-set statusline=
-set statusline+=%<\                       " cut at start
-set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
-set statusline+=%-40F\                    " full path
-set statusline+=%=                        " seperate between right- and left-aligned
-set statusline+=%10(C(%c%V)%)\            " column and virtual column
-set statusline+=%6(L(%l/%L)%)\            " line
-set statusline+=%4(B(%o)%)\               " byte
-set statusline+=%P\                       " percentage of file
-set statusline+=%1*[%{&ff}]-%y%*%*        " file type
 
 " NerdTree
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
@@ -199,11 +261,10 @@ map <silent> <LocalLeader>nr :NERDTree<CR>
 map <silent> <LocalLeader>nf :NERDTreeFind<CR>
 
 let NERDTreeIgnore=['\.pyc$', '\.o$', '\.class$', '\.lo$']
-let NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 1
 
 " FZF
-
-" let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/"'
+let $FZF_DEFAULT_COMMAND = 'find * -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/"'
 let $FZF_DEFAULT_OPTS = '--reverse'
 let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
 let g:fzf_layout = { 'down': '~40%' }
@@ -243,11 +304,7 @@ map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
 
-set scrolloff=5
-set sidescrolloff=5
-set mouse=
-set ttymouse=
-
+" Git grep word
 function! GitGrepWord()
   cgetexpr system("git grep -n '" . expand("<cword>") . "'")
   cwin
@@ -256,31 +313,9 @@ endfunction
 command! -nargs=0 GitGrepWord :call GitGrepWord()
 nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
-function! Trim()
-  %s/\s*$//
-  ''
-endfunction
-command! -nargs=0 Trim :call Trim()
-nnoremap <silent> <Leader>cw :Trim<CR>
-
-" Highlight trailing whitespace
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-autocmd BufRead,InsertLeave * match ExtraWhitespace /\s\+$/
-highlight ExtraWhitespace ctermbg=red guibg=red
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-
-" Highlight too-long lines
-autocmd BufRead,InsertEnter,InsertLeave * 2match LineLengthError /\%126v.*/
-highlight LineLengthError ctermbg=red guibg=red
-autocmd ColorScheme * highlight LineLengthError ctermbg=red guibg=red
-
-" Change color of comments
-highlight Comment ctermfg=lightblue
-autocmd ColorScheme * highlight Comment ctermfg=lightblue guifg=lightblue
-
+" Vimux
 let g:VimuxUseNearestPane = 1
 
-" Vimux
 map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
 map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
 map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
@@ -354,6 +389,7 @@ let g:rails_projections = {
 
 let g:vim_markdown_folding_disabled = 1
 
+" Go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_trailing_whitespace_error = 0
 
@@ -364,78 +400,14 @@ let test#python#runner = 'nose'
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
-map <silent> <LocalLeader>rt :!ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj<CR>
-
-map <silent> <LocalLeader>gd :e product_diff.diff<CR>:%!git diff<CR>:setlocal buftype=nowrite<CR>
-
-set tags+=gems.tags
-
-cnoremap <Tab> <C-L><C-D>
-
-nnoremap <silent> k gk
-nnoremap <silent> j gj
-nnoremap <silent> Y y$
-
-map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
-
-map <silent> <LocalLeader>pp :set paste!<CR>
-
-" Pasting over a selection does not replace the clipboard
-xnoremap <expr> p 'pgv"'.v:register.'y'
-
-imap <C-L> <SPACE>=><SPACE>
-
-command! SudoW w !sudo tee %
-
-" CTRL-J/K navigation in popups
-inoremap <expr> <c-j> (pumvisible()?"\<C-n>":"\<c-j>")
-inoremap <expr> <c-k> (pumvisible()?"\<C-p>":"\<c-k>")
-
-map <C-K> :bprev<CR>
-map <C-J> :bnext<CR>
-
-" with help from http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
-function! MyTabLabel(n)
-  let buflist = tabpagebuflist(a:n)
-  let winnr = tabpagewinnr(a:n)
-  let bufnr = buflist[winnr - 1]
-  let file = bufname(bufnr)
-  let buftype = getbufvar(bufnr, 'buftype')
-
-  if buftype == 'nofile'
-    if file =~ '\/.'
-      let file = substitute(file, '.*\/\ze.', '', '')
-    endif
-  else
-    let file = fnamemodify(file, ':p:t')
-  endif
-  if file == ''
-    let file = '[No Name]'
-  endif
-  return file
-endfunction
-
-" set tabline=%!MyTabLine()
-
 " Syntastic
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Swift
-
 let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
-
-" :w!! to write out a file with sudo
-cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
-
-" Netrw
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_winsize = 20
