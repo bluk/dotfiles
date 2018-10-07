@@ -391,6 +391,9 @@ command! SudoW w !sudo tee %
 inoremap <expr> <c-j> (pumvisible()?"\<C-n>":"\<c-j>")
 inoremap <expr> <c-k> (pumvisible()?"\<C-p>":"\<c-k>")
 
+map <C-K> :bprev<CR>
+map <C-J> :bnext<CR>
+
 " with help from http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
 function! MyTabLabel(n)
   let buflist = tabpagebuflist(a:n)
