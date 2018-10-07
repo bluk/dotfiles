@@ -25,6 +25,7 @@ map <silent> <LocalLeader>nh :nohls<CR>
 map <silent> <LocalLeader>bd :bufdo :bd<CR>
 
 set number
+" set relativenumber
 set tabstop=2
 set shiftwidth=2
 set autoindent
@@ -41,17 +42,30 @@ filetype indent on
 filetype plugin on
 
 set ignorecase
-set smartcase
-
 set incsearch
+set smartcase
 
 set backspace=eol,start,indent
 set ruler
 
 set nowrap
 
+set history=10000
+
+set showcmd
+
+set autoread
+
+set wildmenu
+
+set tabpagemax=40
+
 set completeopt=longest,menuone
 set complete-=t " Don't use tags for autocomplete
+
+set encoding=utf-8
+
+set exrc
 
 " Remaps Ctrl+N to keep menu highlighted
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
@@ -68,6 +82,11 @@ else
     match ErrorMsg '\%>120.\+'
 endif
 
+set cursorline
+highlight CursorLine term=none cterm=none ctermbg=235 guibg=#333333
+
+" Double // is necessary to use absolute file path (in case there's two
+" README.md files for instance)
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
 set undodir=~/.vim/undo//
@@ -175,6 +194,7 @@ map <silent> <leader>ft :Tags<CR>
 map <silent> <C-p> :Files<CR>
 
 set scrolloff=5
+set sidescrolloff=5
 set mouse=
 set ttymouse=
 
@@ -361,3 +381,8 @@ let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 " :w!! to write out a file with sudo
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" Netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
