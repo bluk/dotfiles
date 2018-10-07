@@ -78,13 +78,7 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=manual
 set foldcolumn=4
-" autocmd ColorScheme * highlight SignColumn ctermbg=235 guibg=darkgrey
-" autocmd ColorScheme * highlight SignColumn ctermbg=235 guibg=darkgrey
-" highlight SignColumn guibg=darkgrey ctermbg=235
-" highlight Folded ctermbg=black  guibg=black
-" highlight Folded term=standout ctermfg=14 ctermbg=242 guifg=Cyan guibg=Grey
 highlight Folded ctermfg=15 ctermbg=232 guifg=#DDEEFF guibg=#222222
-" term=standout ctermfg=195 ctermbg=18 guifg=#aaddee guibg=#110077
 
 set viewoptions-=options
 augroup auto_save_folds
