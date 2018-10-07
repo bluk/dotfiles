@@ -18,9 +18,9 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'jparise/vim-graphql'
 Plug 'jtratner/vim-flavored-markdown'
 if expand('<sfile>') == '/etc/vim/vimrc.bundles'
-  Plug 'junegunn/fzf', { 'tag': '0.17.4', 'dir': '/etc/vim/fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf', { 'tag': '0.17.5', 'dir': '/etc/vim/fzf', 'do': './install --bin' }
 else
-  Plug 'junegunn/fzf', { 'tag': '0.17.4', 'dir': '~/.fzf', 'do': './install --bin' }
+  Plug 'junegunn/fzf', { 'tag': '0.17.5', 'dir': '~/.fzf', 'do': './install --bin' }
 endif
 Plug 'junegunn/fzf.vim'
 Plug 'keith/swift.vim'
