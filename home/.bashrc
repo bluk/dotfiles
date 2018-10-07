@@ -59,8 +59,8 @@ fi
 
 # Aliases
 
-alias export-credentials=". $HOME/.local_config/credentials.sh"
 alias dockernotary="notary -s https://notary.docker.io -d ~/.docker/trust"
+alias cdm="cd ~/Code/monorepo"
 alias ll="ls -alF"
 alias la="ls -la"
 alias l='ls -CF'
