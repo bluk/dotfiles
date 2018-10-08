@@ -152,15 +152,16 @@ map <silent> <LocalLeader>rt :!ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg
 " Status
 set laststatus=2
 set statusline=
-set statusline+=%<\                       " cut at start
-set statusline+=%2*[%n%H%M%R%W]%*\        " buffer number, and flags
-set statusline+=%-40F\                    " full path
-set statusline+=%=                        " seperate between right- and left-aligned
-set statusline+=%10(C(%c%V)%)\            " column and virtual column
-set statusline+=%6(L(%l/%L)%)\            " line
-set statusline+=%4(B(%o)%)\               " byte
-set statusline+=%P\                       " percentage of file
-set statusline+=%1*[%{&ff}]%*-%1*%y%*\    " file type
+set statusline+=%<\                               " cut at start
+set statusline+=%2*[%n%H%M%R%W]%*\                " buffer number, and flags
+set statusline+=%-40F\                            " full path
+set statusline+=%=                                " seperate between right- and left-aligned
+set statusline+=%10(C(%c%V)%)\                    " column and virtual column
+set statusline+=%6(L(%l/%L)%)\                    " line
+set statusline+=%4(B(%o)%)\                       " byte
+set statusline+=%P\                               " percentage of file
+set statusline+=%1*%{fugitive#statusline()}%*\    " git status
+set statusline+=%1*[%{&ff}]%*-%1*%y%*\            " file type
 set statusline+=
 
 " Bottom gutter
