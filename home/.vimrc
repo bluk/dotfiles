@@ -96,6 +96,8 @@ augroup auto_save_folds
         \|  endif
 augroup END
 
+let g:vim_markdown_folding_disabled = 1
+
 " Highlight trailing whitespace
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
@@ -156,7 +158,10 @@ set statusline+=%<\                               " cut at start
 set statusline+=%2*[%n%H%M%R%W]%*\                " buffer number, and flags
 set statusline+=%-40F\                            " full path
 set statusline+=%=                                " seperate between right- and left-aligned
-set statusline+=%10(C(%c%V)%)\                    " column and virtual column
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%8(C(%c%V)%)\                    " column and virtual column
 set statusline+=%6(L(%l/%L)%)\                    " line
 set statusline+=%4(B(%o)%)\                       " byte
 set statusline+=%P\                               " percentage of file
@@ -375,8 +380,6 @@ let g:rails_projections = {
       \   }
       \ }
 
-let g:vim_markdown_folding_disabled = 1
-
 " Go
 let g:go_fmt_command = "goimports"
 let g:go_highlight_trailing_whitespace_error = 0
@@ -389,9 +392,7 @@ map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
 " Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
+let g:syntastic_aggregate_errors = 1
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
