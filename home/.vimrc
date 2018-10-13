@@ -407,4 +407,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Swift
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
+let g:syntastic_swift_checkers = ['swiftlint']

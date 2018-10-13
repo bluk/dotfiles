@@ -61,6 +61,7 @@ fi
 
 alias dockernotary="notary -s https://notary.docker.io -d ~/.docker/trust"
 alias cdm="cd ~/Code/monorepo"
+alias spg="swift package generate-xcodeproj"
 alias ll="ls -alF"
 alias la="ls -la"
 alias l='ls -CF'
