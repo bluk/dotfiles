@@ -232,6 +232,10 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP smartindent tabst
 " JavaScript
 autocmd FileType javascript setlocal formatoptions+=t1 tabstop=2 shiftwidth=2 autoindent softtabstop=2 expandtab
 autocmd FileType javascript setlocal commentstring=//\ %s
+autocmd BufNewFile *.js 0r ~/.vim/templates/typescript.tpl
+
+" TypeScript
+autocmd BufNewFile *.ts 0r ~/.vim/templates/typescript.tpl
 
 " Python
 autocmd FileType python setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
@@ -245,6 +249,10 @@ autocmd FileType cs setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 
 " Swift
 autocmd FileType swift setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
+autocmd BufNewFile *.swift 0r ~/.vim/templates/swift.tpl
+
+" Shell script
+autocmd BufNewFile *.sh 0r ~/.vim/templates/bash_script.tpl
 
 " Autoremove trailing spaces when saving the buffer
 autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby,swift autocmd BufWritePre <buffer> :%s/\s\+$//e
