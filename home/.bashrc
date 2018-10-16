@@ -170,7 +170,7 @@ function check_terraform_workspace_and_git_branch
 
 alias tfp="check_terraform_workspace_and_git_branch 'terraform plan -out=plan.changes'"
 alias tfa="check_terraform_workspace_and_git_branch 'terraform apply plan.changes'"
-alias tfws="terraform workspace select $(git branch | grep '*' | sed 's/\* //')"
+alias tfws='terraform workspace select $(git branch | grep "*" | sed "s/\* //")'
 alias tfi="terraform init -backend-config=backend.secret.tfvars"
 
 alias fdbstop="sudo launchctl unload -w /Library/LaunchDaemons/com.foundationdb.fdbmonitor.plist"
