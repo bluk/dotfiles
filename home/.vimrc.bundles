@@ -12,6 +12,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'benmills/vimux'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'google/vim-searchindex'
 Plug 'hashivim/vim-hashicorp-tools'
