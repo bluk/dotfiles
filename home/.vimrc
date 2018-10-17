@@ -154,6 +154,9 @@ set complete-=t " Don't use tags for autocomplete
 
 map <silent> <LocalLeader>rt :!ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj<CR>
 
+" Set Python to version 3; required for deoplete
+set pyxversion=3
+
 " Status
 set laststatus=2
 set statusline=
@@ -360,36 +363,13 @@ endfunction
 
 vnoremap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
 
-let g:ale_enabled = 0                     " Disable linting by default
-let g:ale_lint_on_text_changed = 'normal' " Only lint while in normal mode
-let g:ale_lint_on_insert_leave = 1        " Automatically lint when leaving insert mode
-
-let g:ale_linters = {
-\   'java': []
-\ }
-
 let html_use_css=1
 let html_number_lines=0
 let html_no_pre=1
+let g:no_html_toolbar = 'yes'
 
 let g:gist_clip_command = 'pbcopy'
 let g:gist_detect_filetype = 1
-
-let g:ruby_indent_assignment_style = 'variable'
-
-let g:no_html_toolbar = 'yes'
-
-let g:rails_projections = {
-      \   "script/*.rb": {
-      \     "test": "spec/script/{}_spec.rb"
-      \   },
-      \   "spec/script/*_spec.rb": {
-      \     "alternate": "script/{}.rb"
-      \   },
-      \   "app/lib/*.rb": {
-      \     "test": "spec/lib/{}_spec.rb"
-      \   }
-      \ }
 
 " Go
 let g:go_fmt_command = "goimports"
@@ -442,3 +422,24 @@ let g:syntastic_check_on_wq = 0
 
 " Swift
 let g:syntastic_swift_checkers = ['swiftlint']
+
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" LanguageClient-neovim / LSP
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['~/.npm-global/bin/javascript-typescript-stdio'],
+    \ 'typescript': ['~/.npm-global/bin/javascript-typescript-stdio'],
+    \ 'go': ['go-langserver'],
+    \ }
+
+function LC_maps()
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
+    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <buffer> <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+  endif
+endfunction
+
+autocmd FileType * call LC_maps()
