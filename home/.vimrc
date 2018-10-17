@@ -428,9 +428,15 @@ let g:deoplete#enable_at_startup = 1
 
 " LanguageClient-neovim / LSP
 let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['~/.npm-global/bin/javascript-typescript-stdio'],
-    \ 'typescript': ['~/.npm-global/bin/javascript-typescript-stdio'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
     \ 'go': ['go-langserver'],
+    \ 'bash': ['bash-language-server'],
+    \ 'Dockerfile': ['docker-langserver'],
+    \ 'json': ['vscode-json-languageserver'],
+    \ 'html': ['html-languageserver'],
+    \ 'css': ['css-languageserver'],
+    \ 'yaml': ['node', '~/.npm-global/lib/node_modules/yaml-language-server/out/server/src/server.js', '--stdio'],
     \ }
 
 function LC_maps()
