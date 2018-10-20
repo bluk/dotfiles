@@ -86,6 +86,10 @@ export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
 
 ## Go
 
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$HOME/.goenv/bin:$PATH"
+eval "$(goenv init -)"
+
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
