@@ -437,6 +437,7 @@ let g:LanguageClient_serverCommands = {
     \ 'html': ['html-languageserver'],
     \ 'css': ['css-languageserver'],
     \ 'yaml': ['node', '~/.npm-global/lib/node_modules/yaml-language-server/out/server/src/server.js', '--stdio'],
+    \ 'python': ['pyls'],
     \ }
 
 function LC_maps()
