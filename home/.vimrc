@@ -334,16 +334,17 @@ command! -nargs=0 GitGrepWord :call GitGrepWord()
 nnoremap <silent> <Leader>gw :GitGrepWord<CR>
 
 " Vimux
-let g:VimuxUseNearestPane = 1
+" let g:VimuxUseNearestPane = 1
 
-map <silent> <LocalLeader>rl :wa<CR> :VimuxRunLastCommand<CR>
-map <silent> <LocalLeader>vi :wa<CR> :VimuxInspectRunner<CR>
-map <silent> <LocalLeader>vk :wa<CR> :VimuxInterruptRunner<CR>
-map <silent> <LocalLeader>vx :wa<CR> :VimuxCloseRunner<CR>
-map <silent> <LocalLeader>vp :VimuxPromptCommand<CR>
-vmap <silent> <LocalLeader>vs "vy :call VimuxRunCommand(@v)<CR>
-nmap <silent> <LocalLeader>vs vip<LocalLeader>vs<CR>
-map <silent> <LocalLeader>ds :call VimuxRunCommand('clear; grep -E "^ *describe[ \(]\|^ *context[ \(]\|^ *it[ \(]" ' . bufname("%"))<CR>
+map <silent> <leader>vp :VimuxPromptCommand<CR>
+map <silent> <leader>vl :VimuxRunLastCommand<CR>
+map <silent> <leader>vi :VimuxInspectRunner<CR>
+map <silent> <leader>vx :VimuxCloseRunner<CR>
+map <silent> <leader>vk :VimuxInterruptRunner<CR>
+map <silent> <leader>vz :call VimuxZoomRunner()<CR>
+map <silent> <leader>vc :VimuxClearRunnerHistory<CR>
+vmap <silent> <leader>vs "vy :call VimuxRunCommand(@v)<CR>
+nmap <silent> <leader>vs vip<LocalLeader>vs<CR>
 
 " vim-ack
 let g:AckAllFiles = 0
