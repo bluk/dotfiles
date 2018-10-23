@@ -388,6 +388,7 @@ let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
+let g:go_template_autocreate = 0
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -408,6 +409,8 @@ autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
 autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
 autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
 autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+autocmd BufNewFile *.go 0r ~/.vim/templates/go.tpl
 
 " TComment
 map <silent> <LocalLeader>cc :TComment<CR>
