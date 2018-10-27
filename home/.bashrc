@@ -185,3 +185,6 @@ alias fdbstart="sudo launchctl load -w /Library/LaunchDaemons/com.foundationdb.f
 if [ -f ~/.local_config/.bashrc ]; then
     source ~/.local_config/.bashrc
 fi
+
+# Allow direnv. Needs to be near the end after prompts are set
+eval "$(direnv hook bash)"
