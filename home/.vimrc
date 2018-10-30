@@ -173,6 +173,7 @@ set statusline+=%4(B(%o)%)\                       " byte
 set statusline+=%P\                               " percentage of file
 set statusline+=%1*%{fugitive#statusline()}%*\    " git status
 set statusline+=%1*[%{&ff}]%*-%1*%y%*\            " file type
+set statusline+=%1*%{ObsessionStatus()}%*
 set statusline+=
 
 " Bottom gutter
