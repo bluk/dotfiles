@@ -24,7 +24,6 @@ else
   Plug 'junegunn/fzf', { 'tag': '0.17.5', 'dir': '~/.fzf', 'do': './install --bin' }
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'keith/swift.vim'
 Plug 'mileszs/ack.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
@@ -48,6 +47,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'bluk/vim-swift'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
