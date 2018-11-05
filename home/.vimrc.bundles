@@ -38,7 +38,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'uarun/vim-protobuf'
 Plug 'vim-scripts/Align'
-Plug 'vim-syntastic/syntastic'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-vividchalk'
 Plug 'autozimu/LanguageClient-neovim', {

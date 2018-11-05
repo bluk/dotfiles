@@ -165,7 +165,6 @@ set statusline+=%2*[%n%H%M%R%W]%*\                " buffer number, and flags
 set statusline+=%-40F\                            " full path
 set statusline+=%=                                " seperate between right- and left-aligned
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 set statusline+=%8(C(%c%V)%)\                    " column and virtual column
 set statusline+=%6(L(%l/%L)%)\                    " line
