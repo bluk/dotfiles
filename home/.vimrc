@@ -418,15 +418,20 @@ autocmd BufNewFile *.go 0r ~/.vim/templates/go.tpl
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
-" Syntastic
-let g:syntastic_aggregate_errors = 1
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Swift
-let g:syntastic_swift_checkers = ['swiftlint']
+function! s:build_swift_files()
+  let l:file = expand('%')
+  if expand('%:p') =~# '.*Tests.*'
+    call swift#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.swift$'
+    call swift#spm#Build(0)
+  endif
+endfunction
+autocmd FileType swift nmap <leader>b :<C-u>call <SID>build_swift_files()<CR>
+autocmd FileType swift nmap <leader>t  <Plug>(swift-test)
+
+let g:swift_swiftformat_autosave = 1
+let g:swift_swiftlint_autosave = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
