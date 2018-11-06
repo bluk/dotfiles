@@ -421,7 +421,7 @@ map <silent> <LocalLeader>uc :TComment<CR>
 function! s:build_swift_files()
   let l:file = expand('%')
   if expand('%:p') =~# '.*Tests.*'
-    call swift#test#Test(0, 1)
+    call swift#spm#Test(0, 1)
   elseif l:file =~# '^\f\+\.swift$'
     call swift#spm#Build(0)
   endif
