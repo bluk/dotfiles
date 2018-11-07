@@ -418,16 +418,11 @@ map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
 " Swift
-function! s:build_swift_files()
-  let l:file = expand('%')
-  if expand('%:p') =~# '.*Tests.*'
-    call swift#spm#Test(0, 1)
-  elseif l:file =~# '^\f\+\.swift$'
-    call swift#spm#Build(0)
-  endif
-endfunction
-autocmd FileType swift nmap <leader>b :<C-u>call <SID>build_swift_files()<CR>
-autocmd FileType swift nmap <leader>t  <Plug>(swift-test)
+autocmd FileType swift nmap <leader>b <Plug>(swift-spm-build)
+autocmd FileType swift nmap <leader>t <Plug>(swift-spm-test)
+autocmd FileType swift nmap <leader>ft <Plug>(swift-spm-test-function-only)
+autocmd FileType swift nmap <leader>sf <Plug>(swift-swiftformat)
+autocmd FileType swift nmap <leader>sl <Plug>(swift-swiftlint)
 
 let g:swift_swiftformat_autosave = 1
 let g:swift_swiftlint_autosave = 1
