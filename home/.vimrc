@@ -423,9 +423,12 @@ autocmd FileType swift nmap <leader>t <Plug>(swift-spm-test)
 autocmd FileType swift nmap <leader>ft <Plug>(swift-spm-test-function-only)
 autocmd FileType swift nmap <leader>sf <Plug>(swift-swiftformat)
 autocmd FileType swift nmap <leader>sl <Plug>(swift-swiftlint)
+autocmd FileType swift nmap <leader>sgx <Plug>(swift-spm-generate-xcodeproj)
+autocmd FileType swift nmap <leader>sgl <Plug>(swift-spm-test-generate-linuxmain)
 
 let g:swift_swiftformat_autosave = 1
 let g:swift_swiftlint_autosave = 1
+let g:swift_list_type_commands = { 'Autosave': 'quickfix' }
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
