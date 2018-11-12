@@ -94,6 +94,12 @@ eval "$(goenv init -)"
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
 
+## Swift
+
+export SWIFTENV_ROOT="$HOME/.swiftenv"
+export PATH="$SWIFTENV_ROOT/bin:$PATH"
+eval "$(swiftenv init -)"
+
 ## Python
 
 export WORK_ON=~/.virtualenv/
