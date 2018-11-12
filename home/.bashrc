@@ -75,6 +75,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 export PATH=$PATH:~/scripts
 export PATH=$PATH:~/Code/bin
 export PATH=$PATH:~/Applications
+export PATH=$PATH:~/.fastlane/bin
 
 # Language Specific
 
