@@ -147,6 +147,8 @@ end
 
 # The fish_postexec event is fired after executing a command line.
 function fish_command_timer_postexec -e fish_postexec
+  set -l last_status $status
+
   if not fish_command_timer_compute
     return
   end
@@ -194,19 +196,30 @@ function fish_command_timer_postexec -e fish_postexec
     return
   end
 
+  # Set the color for the status depending on the value
+  set __fish_color_status $fish_command_timer_color
+  if test $last_status -gt 0
+      set __fish_color_status red
+  end
+  set -l status_str " ($last_status) |"
+
   set -l now_str (fish_command_timer_print_time $command_end_time)
   set -l output_str
   if [ -n "$now_str" ]
-    set output_str "[ $time_str | $now_str ]"
+    set output_str "[$status_str $time_str | $now_str ]"
   else
-    set output_str "[ $time_str ]"
+    set output_str "[$status_str $time_str ]"
   end
   set -l output_str_colored
   if begin
        set -q fish_command_timer_color; and \
        [ -n "$fish_command_timer_color" ]
      end
-    set output_str_colored (set_color $fish_command_timer_color)"$output_str"(set_color normal)
+    if [ -n "$now_str" ]
+      set output_str_colored "["(set_color $__fish_color_status)"$status_str"(set_color $fish_command_timer_color)" $time_str | $now_str ]"(set_color normal)
+    else
+      set output_str_colored "["(set_color $__fish_color_status)"$status_str"(set_color $fish_command_timer_color)" $time_str ]"(set_color normal)
+    end
   else
     set output_str_colored "$output_str"
   end
