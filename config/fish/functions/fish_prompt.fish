@@ -44,13 +44,16 @@ function fish_prompt --description 'Write out the prompt'
         case '*'
 
             if not set -q __fish_prompt_cwd
-                # set -g __fish_prompt_cwd (set_color $fish_color_cwd)
                 set -g __fish_prompt_cwd (set_color cyan)
-                # bright_magenta for the command number
+            end
+
+            set git_prompt (__fish_git_prompt)
+            if not set -q git_prompt
+              set git_prompt ""
             end
 
             # printf '[%s %s%s@%s %s%s %s(%s)%s \f\r] $' (date "+%H:%M:%S") "$__fish_color_blue" $USER (prompt_hostname) "$__fish_prompt_cwd" "$PWD" "$__fish_color_status" "$stat" "$__fish_prompt_normal"
-            printf '[%s%s%s:%s%s%s - %s(%s)%s] $ ' (set_color brred) (date "+%H:%M:%S") "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" (__fish_git_prompt) "$__fish_color_status" "$stat" "$__fish_prompt_normal"
+            printf '[%s%s%s:%s%s%s - %s(%s)%s] $ ' (set_color brred) (date "+%H:%M:%S") "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" "$git_prompt" "$__fish_color_status" "$stat" "$__fish_prompt_normal"
 
-    end
+   end
 end
