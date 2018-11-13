@@ -115,5 +115,9 @@ alias fdbstart "sudo launchctl load -w /Library/LaunchDaemons/com.foundationdb.f
 # FZF
 set -gx PATH "$HOME/.fzf/bin" $PATH
 
+# Fish Command Timer
+set -g fish_command_timer_color brcyan
+set -g fish_command_timer_time_format "%H:%M:%S"
+
 # Allow direnv. Needs to be near the end after prompts are set
 eval (direnv hook fish)
