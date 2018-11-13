@@ -119,5 +119,9 @@ set -gx PATH "$HOME/.fzf/bin" $PATH
 set -g fish_command_timer_color brcyan
 set -g fish_command_timer_time_format "%H:%M:%S"
 
+if test -e "$HOME/.local_config/local.fish"
+  source "$HOME/.local_config/local.fish"
+end
+
 # Allow direnv. Needs to be near the end after prompts are set
 eval (direnv hook fish)
