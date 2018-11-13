@@ -13,7 +13,7 @@ if not set -q OSTYPE
     set -gx OSTYPE (bash -c 'echo ${OSTYPE}')
 end
 
-fish_vi_key_bindings
+set -g fish_key_bindings hybrid_bindings
 
 if test $OSTYPE = "linux-gnu"
   gpgconf --create-socketdir; or true
