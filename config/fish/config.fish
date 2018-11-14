@@ -115,6 +115,10 @@ alias fdbstart "sudo launchctl load -w /Library/LaunchDaemons/com.foundationdb.f
 # FZF
 set -gx PATH "$HOME/.fzf/bin" $PATH
 
+# Fish Start Preexec Time
+set -g fish_command_start_preexec_color brcyan
+set -g fish_command_start_preexec_time_format "%H:%M:%S"
+
 # Fish Command Timer
 set -g fish_command_timer_color brcyan
 set -g fish_command_timer_time_format "%H:%M:%S"

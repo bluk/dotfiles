@@ -43,8 +43,25 @@ function fish_prompt --description 'Write out the prompt'
               set git_prompt ""
             end
 
+            switch $fish_bind_mode
+              case default
+                set -g __fish_prompt_mode_color (set_color --bold red)
+                set -g __fish_prompt_bind_mode '(N)'
+              case insert
+                set -g __fish_prompt_mode_color (set_color --bold green)
+                set -g __fish_prompt_bind_mode '(I)'
+              case replace_one
+                set -g __fish_prompt_mode_color (set_color --bold green)
+                set -g __fish_prompt_bind_mode '(R)'
+              case visual
+                set -g __fish_prompt_mode_color (set_color --bold brmagenta)
+                set -g __fish_prompt_bind_mode '(V)'
+              case '*'
+                set -g __fish_prompt_mode_color (set_color --bold red)
+                set -g __fish_prompt_bind_mode '(?)'
+            end
             # printf '[%s %s%s@%s %s%s %s(%s)%s \f\r] $' (date "+%H:%M:%S") "$__fish_color_blue" $USER (prompt_hostname) "$__fish_prompt_cwd" "$PWD" "$__fish_color_status" "$stat" "$__fish_prompt_normal"
-            printf '[ %s%s%s:%s%s%s%s ] $ ' (set_color brred) (date "+%H:%M:%S") "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" "$git_prompt" "$__fish_prompt_normal"
+            printf '[ %s%s%s%s %s%s%s ] $ ' "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" "$git_prompt" "$__fish_prompt_mode_color" "$__fish_prompt_bind_mode" "$__fish_prompt_normal"
 
    end
 end
