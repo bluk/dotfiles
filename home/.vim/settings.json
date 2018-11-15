@@ -1,0 +1,6 @@
+{
+  "go.gocodeCompletionEnabled": true,
+  "go.funcSnippetEnabled": true,
+  "go.lintTool": "golint",
+  "go.formatTool": "gofmt"
+}
