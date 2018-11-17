@@ -439,7 +439,6 @@ let g:LanguageClient_serverCommands = {
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'go': ['go-langserver'],
     \ 'bash': ['bash-language-server'],
-    \ 'Dockerfile': ['docker-langserver'],
     \ 'json': ['vscode-json-languageserver'],
     \ 'html': ['html-languageserver'],
     \ 'css': ['css-languageserver'],
