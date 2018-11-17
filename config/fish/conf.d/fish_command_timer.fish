@@ -150,11 +150,11 @@ end
 
 # The fish_postexec event is fired after executing a command line.
 function fish_command_timer_postexec -e fish_postexec
+  set -l last_status $status
+
   if not fish_command_timer_compute
     return
   end
-
-  set -l last_status $status
 
   set -l command_end_time (date '+%s')
 
