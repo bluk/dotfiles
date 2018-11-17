@@ -60,7 +60,6 @@ doc/
 
 # Xcode
 .DS_Store
-*/build/*
 *.pbxuser
 !default.pbxuser
 *.mode1v3
