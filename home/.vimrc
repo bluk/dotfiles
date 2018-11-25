@@ -430,40 +430,72 @@ let g:swift_swiftformat_autosave = 1
 let g:swift_swiftlint_autosave = 1
 let g:swift_list_type_commands = { 'Autosave': 'quickfix' }
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
+" Language Server Protocol
 
-" LanguageClient-neovim / LSP
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'go': ['go-langserver'],
-    \ 'bash': ['bash-language-server'],
-    \ 'json': ['vscode-json-languageserver'],
-    \ 'html': ['html-languageserver'],
-    \ 'css': ['css-languageserver'],
-    \ 'yaml': ['node', '~/.npm-global/lib/node_modules/yaml-language-server/out/server/src/server.js', '--stdio'],
-    \ 'python': ['pyls'],
-    \ }
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
-function LC_maps()
-  if has_key(g:LanguageClient_serverCommands, &filetype)
-    nnoremap <buffer> <silent> K :call LanguageClient#textDocument_hover()<cr>
-    nnoremap <buffer> <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <leader>lm :call LanguageClient_contextMenu()<CR>
-    nnoremap <buffer> <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <buffer> <silent> <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
-    nnoremap <buffer> <silent> <leader>li :call LanguageClient#textDocument_implementation()<CR>
-    nnoremap <buffer> <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-    nnoremap <buffer> <silent> <leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-    nnoremap <buffer> <silent> <leader>lf :call LanguageClient#textDocument_references()<CR>
-    nnoremap <buffer> <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-    nnoremap <buffer> <silent> <leader>lc :call LanguageClient#textDocument_completion()<CR>
-    nnoremap <buffer> <silent> <leader>lo :call LanguageClient#textDocument_formatting()<CR>
-    " nnoremap <buffer> <silent> <leader>lh :call LanguageClient#textDocument_documentHighlight()<CR>
-    " nnoremap <buffer> <silent> <leader>lh :call LanguageClient#clearDocumentHighlight()<CR>
-    nnoremap <buffer> <silent> <leader>lw :call LanguageClient#workspace_symbol()<CR>
-  endif
-endfunction
+nnoremap K :LspHover<CR>
+nnoremap <silent> <leader>la :LspCodeAction<CR>
+nnoremap <silent> <leader>ll :LspDocumentDiagnostics<CR>
+nnoremap <silent> <leader>ld :LspDefinition<CR>
+nnoremap <silent> <leader>lf :LspDocumentFormat<CR>
+nnoremap <silent> <leader>ls :LspDocumentSymbol<CR>
+nnoremap <silent> <leader>lr :LspReferences<CR>
+nnoremap <silent> <leader>li :LspImplementation<CR>
+nnoremap <silent> <leader>ln :LspNextError<CR>
+nnoremap <silent> <leader>lp :LspPreviousError<CR>
+nnoremap <silent> <leader>lt :LspTypeDefinition<CR>
+nnoremap <silent> <leader>lw :LspWorkspaceSymbol<CR>
+nnoremap <silent> <leader>le :LspRename<CR>
 
-autocmd FileType * call LC_maps()
+if executable('pyls')
+    " pip install python-language-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript'],
+        \ })
+endif
+
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+      \ 'whitelist': ['typescript', 'javascript', 'javascript.jsx']
+      \ })
+endif
+
+if executable('go-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'go-langserver',
+        \ 'cmd': {server_info->['go-langserver', '-gocodecompletion']},
+        \ 'whitelist': ['go'],
+        \ })
+endif
+
+if executable('docker-langserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'docker-langserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+        \ 'whitelist': ['dockerfile'],
+        \ })
+endif
+
+if executable('css-languageserver')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'css-languageserver',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+        \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
