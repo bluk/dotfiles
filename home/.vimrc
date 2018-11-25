@@ -390,6 +390,7 @@ let g:go_highlight_generate_tags = 1
 let g:go_auto_type_info = 1
 let g:go_auto_sameids = 1
 let g:go_template_autocreate = 0
+let g:go_def_mapping_enabled = 0
 
 " run :GoBuild or :GoTestCompile based on the go file
 function! s:build_go_files()
@@ -436,18 +437,19 @@ let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
 
 nnoremap K :LspHover<CR>
+nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gi :LspImplementation<CR>
+nnoremap <silent> gt :LspTypeDefinition<CR>
+nnoremap <silent> gr :LspReferences<CR>
+nnoremap <silent> gs :LspDocumentSymbol<CR>
+nnoremap <silent> gw :LspWorkspaceSymbol<CR>
+
 nnoremap <silent> <leader>la :LspCodeAction<CR>
-nnoremap <silent> <leader>ll :LspDocumentDiagnostics<CR>
-nnoremap <silent> <leader>ld :LspDefinition<CR>
+nnoremap <silent> <leader>ld :LspDocumentDiagnostics<CR>
 nnoremap <silent> <leader>lf :LspDocumentFormat<CR>
-nnoremap <silent> <leader>ls :LspDocumentSymbol<CR>
-nnoremap <silent> <leader>lr :LspReferences<CR>
-nnoremap <silent> <leader>li :LspImplementation<CR>
 nnoremap <silent> <leader>ln :LspNextError<CR>
 nnoremap <silent> <leader>lp :LspPreviousError<CR>
-nnoremap <silent> <leader>lt :LspTypeDefinition<CR>
-nnoremap <silent> <leader>lw :LspWorkspaceSymbol<CR>
-nnoremap <silent> <leader>le :LspRename<CR>
+nnoremap <silent> <leader>lr :LspRename<CR>
 
 if executable('pyls')
     " pip install python-language-server
