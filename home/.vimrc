@@ -387,8 +387,8 @@ let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_generate_tags = 1
-let g:go_auto_type_info = 1
-let g:go_auto_sameids = 1
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
 let g:go_template_autocreate = 0
 let g:go_def_mapping_enabled = 0
 
@@ -449,7 +449,7 @@ nnoremap <silent> <leader>ld :LspDocumentDiagnostics<CR>
 nnoremap <silent> <leader>lf :LspDocumentFormat<CR>
 nnoremap <silent> <leader>ln :LspNextError<CR>
 nnoremap <silent> <leader>lp :LspPreviousError<CR>
-nnoremap <silent> <leader>lr :LspRename<CR>
+nnoremap <silent> <leader>rn :LspRename<CR>
 
 if executable('pyls')
     " pip install python-language-server

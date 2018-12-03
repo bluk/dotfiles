@@ -7,17 +7,12 @@ if expand('<sfile>') == '/etc/vim/vimrc.bundles'
 else
   call plug#begin('~/.vim/plugged')
 endif
-"
-Plug 'pearofducks/ansible-vim'
+
 Plug 'benmills/vimux'
-Plug 'ekalinin/Dockerfile.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'google/vim-searchindex'
-Plug 'hashivim/vim-hashicorp-tools'
-Plug 'jparise/vim-graphql'
-Plug 'jtratner/vim-flavored-markdown'
 if expand('<sfile>') == '/etc/vim/vimrc.bundles'
   Plug 'junegunn/fzf', { 'tag': '0.17.5', 'dir': '/etc/vim/fzf', 'do': './install --bin' }
 else
@@ -25,7 +20,6 @@ else
 endif
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
-Plug 'pangloss/vim-javascript'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
@@ -36,24 +30,26 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
-Plug 'uarun/vim-protobuf'
-Plug 'vim-scripts/Align'
-Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-vividchalk'
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-" Plug 'Shougo/deoplete.nvim'
-" Plug 'roxma/nvim-yarp'
-" Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'vim-scripts/Align'
+
+Plug 'bluk/swifty-vim'
+Plug 'dag/vim-fish'
+Plug 'ekalinin/Dockerfile.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'hashivim/vim-hashicorp-tools'
+Plug 'jparise/vim-graphql'
+Plug 'jtratner/vim-flavored-markdown'
+Plug 'pangloss/vim-javascript'
+Plug 'pearofducks/ansible-vim'
+Plug 'uarun/vim-protobuf'
+Plug 'leafgarland/typescript-vim'
+
+" LSP
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
-Plug 'bluk/swifty-vim'
-Plug 'dag/vim-fish'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
