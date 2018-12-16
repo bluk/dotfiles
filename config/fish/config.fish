@@ -96,6 +96,10 @@ end
 # set -gx PATH "$HOME/.node_modules/bin" $PATH
 set -gx PATH "$HOME/.npm-global/bin" $PATH
 
+## Rust
+#
+set -gx PATH "$HOME/.cargo/bin" $PATH
+
 ## Docker
 
 set -gx DOCKER_CONTENT_TRUST 1

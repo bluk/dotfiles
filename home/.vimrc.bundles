@@ -44,6 +44,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 Plug 'uarun/vim-protobuf'
 Plug 'leafgarland/typescript-vim'
+Plug 'rust-lang/rust.vim'
 
 " LSP
 Plug 'prabirshrestha/async.vim'

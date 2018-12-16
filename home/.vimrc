@@ -418,6 +418,13 @@ autocmd BufNewFile *.go 0r ~/.vim/templates/go.tpl
 map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
+" Rust
+let g:rustfmt_autossave_if_config_present = 1
+
+autocmd FileType rust nmap <leader>b :Cbuild<CR>
+autocmd FileType rust nmap <leader>r :Crun<CR>
+autocmd FileType rust nmap <leader>t :Ctest<CR>
+
 " Swift
 autocmd FileType swift nmap <leader>b <Plug>(swift-spm-build)
 autocmd FileType swift nmap <leader>t <Plug>(swift-spm-test)
@@ -499,5 +506,14 @@ if executable('css-languageserver')
         \ 'name': 'css-languageserver',
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
         \ 'whitelist': ['css', 'less', 'sass'],
+        \ })
+endif
+
+if executable('rls')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
+        \ 'whitelist': ['rust'],
         \ })
 endif
