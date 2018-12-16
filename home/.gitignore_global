@@ -112,4 +112,4 @@ Session.vim
 
 .svn/
 
-/tags
+*.tfplan

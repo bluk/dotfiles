@@ -108,8 +108,8 @@ if string match -i -q "darwin*" $OSTYPE; and test $status -eq 0
   switch_gpg_agent_for_ssh
 end
 
-alias tfp "check_terraform_workspace_and_git_branch 'terraform plan -out=plan.changes'"
-alias tfa "check_terraform_workspace_and_git_branch 'terraform apply plan.changes'"
+alias tfp "check_terraform_workspace_and_git_branch 'terraform plan -out=changes.tfplan'"
+alias tfa "check_terraform_workspace_and_git_branch 'terraform apply changes.tfplan'"
 alias tfws 'terraform workspace select (git branch | grep "*" | sed "s/\* //")'
 alias tfi "terraform init -backend-config=backend.secret.tfvars"
 
