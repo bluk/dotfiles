@@ -112,4 +112,8 @@ Session.vim
 
 .svn/
 
+# Terraform
 *.tfplan
+
+# Ansible
+*.retry
