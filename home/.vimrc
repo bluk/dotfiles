@@ -524,10 +524,11 @@ if executable('rls')
         \ })
 endif
 
-if executable('sourcekit-lsp')
+let g:sourcekit_lsp_pathname=$HOME . "/provision/sourcekit-lsp/.build/x86_64-apple-macosx/debug/sourcekit-lsp"
+if executable(g:sourcekit_lsp_pathname)
   au User lsp_setup call lsp#register_server({
         \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->['sourcekit-lsp']},
+        \ 'cmd': {server_info->[g:sourcekit_lsp_pathname]},
         \ 'whitelist': ['swift'],
         \ })
 endif
