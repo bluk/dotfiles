@@ -436,7 +436,13 @@ autocmd FileType swift nmap <leader>sgl <Plug>(swift-spm-test-generate-linuxmain
 
 let g:swift_swiftformat_autosave = 1
 let g:swift_swiftlint_autosave = 1
-let g:swift_list_type_commands = { 'Autosave': 'quickfix' }
+let g:swift_list_type_commands = {
+      \ 'Autosave': 'quickfix',
+      \ 'SwiftPMBuild': 'locationlist',
+      \ 'SwiftPMTest': 'locationlist'
+      \ }
+let g:swift_compiler_spm_path = "/Users/bryantluk/.swiftenv/shims/swift"
+let g:swift_compiler_swiftc_path = "/Users/bryantluk/.swiftenv/shims/swift"
 
 " Language Server Protocol
 
@@ -517,3 +523,15 @@ if executable('rls')
         \ 'whitelist': ['rust'],
         \ })
 endif
+
+if executable('sourcekit-lsp')
+  au User lsp_setup call lsp#register_server({
+        \ 'name': 'sourcekit-lsp',
+        \ 'cmd': {server_info->['sourcekit-lsp']},
+        \ 'whitelist': ['swift'],
+        \ })
+endif
+autocmd FileType swift setlocal omnifunc=lsp#complete
+
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')

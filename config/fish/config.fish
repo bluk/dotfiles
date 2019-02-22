@@ -67,6 +67,8 @@ if which swiftenv > /dev/null
   and source (swiftenv init - | psub)
 end
 
+set -gx PATH $PATH $HOME/provision/sourcekit-lsp/.build/x86_64-apple-macosx/debug
+
 ## Python
 
 set -gx WORK_ON ~/.virtualenv/
