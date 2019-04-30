@@ -68,7 +68,7 @@ if which swiftenv > /dev/null
 end
 
 set -gx PATH $PATH $HOME/provision/sourcekit-lsp/.build/x86_64-apple-macosx/debug
-set -gx SOURCEKIT_TOOLCHAIN_PATH /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2019-02-14-a.xctoolchain/
+# set -gx SOURCEKIT_TOOLCHAIN_PATH /Library/Developer/Toolchains/swift-DEVELOPMENT-SNAPSHOT-2019-02-14-a.xctoolchain/
 
 ## Python
 

@@ -419,7 +419,7 @@ map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
 " Rust
-let g:rustfmt_autossave_if_config_present = 1
+let g:rustfmt_autosave_if_config_present = 1
 
 autocmd FileType rust nmap <leader>b :Cbuild<CR>
 autocmd FileType rust nmap <leader>r :Crun<CR>
