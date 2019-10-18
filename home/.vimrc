@@ -419,11 +419,12 @@ map <silent> <LocalLeader>cc :TComment<CR>
 map <silent> <LocalLeader>uc :TComment<CR>
 
 " Rust
-let g:rustfmt_autosave_if_config_present = 1
+let g:rustfmt_autosave = 1
 
 autocmd FileType rust nmap <leader>b :Cbuild<CR>
 autocmd FileType rust nmap <leader>r :Crun<CR>
 autocmd FileType rust nmap <leader>t :Ctest<CR>
+autocmd FileType rust nmap <leader>ft :RustTest<CR>
 
 " Swift
 autocmd FileType swift nmap <leader>b <Plug>(swift-spm-build)
