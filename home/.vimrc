@@ -457,7 +457,7 @@ nnoremap <silent> <leader>gi :LspImplementation<CR>
 nnoremap <silent> <leader>gt :LspTypeDefinition<CR>
 nnoremap <silent> <leader>gr :LspReferences<CR>
 nnoremap <silent> <leader>gs :LspDocumentSymbol<CR>
-nnoremap <silent> <leader>gw :LspWorkspaceSymbol<CR>
+nnoremap <silent> <leader>gq :LspWorkspaceSymbol<CR>
 
 nnoremap <silent> <leader>la :LspCodeAction<CR>
 nnoremap <silent> <leader>ld :LspDocumentDiagnostics<CR>
