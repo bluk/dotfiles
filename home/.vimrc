@@ -183,7 +183,7 @@ set ruler
 set wildmenu
 
 " Ignore files
-set wildignore +=tmp,.git,.swp,.svn,bower_components,node_modules,*.class,*.jar,*.gif,*.png,*.jpg,*.bak,*.pyc,vendor,*.o,*.class,*.lo
+set wildignore +=tmp,.git,.swp,.svn,bower_components,node_modules,*.class,*.jar,*.gif,*.png,*.jpg,*.bak,*.pyc,vendor,*.o,*.class,*.lo,target
 
 " Read project directory's .vimrc file
 " set exrc
