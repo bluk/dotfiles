@@ -273,6 +273,7 @@ autocmd BufWritePre *.tf call terraform#fmt()
 augroup markdown
   au!
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
+  autocmd BufNewFile,BufRead *.md setlocal textwidth=80
 augroup END
 
 " NerdTree
