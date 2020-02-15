@@ -285,7 +285,7 @@ let NERDTreeIgnore=['\.pyc$', '\.o$', '\.class$', '\.lo$']
 let NERDTreeHijackNetrw = 1
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'find . -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/|.git/|.vim/|\.build/"'
+let $FZF_DEFAULT_COMMAND = 'find . -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/|.git/|.vim/|\.build/|target"'
 let $FZF_DEFAULT_OPTS = '--reverse'
 let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
 let g:fzf_layout = { 'down': '~40%' }
