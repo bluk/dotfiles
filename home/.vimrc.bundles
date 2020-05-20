@@ -19,10 +19,12 @@ else
   Plug 'junegunn/fzf', { 'tag': '0.17.5', 'dir': '~/.fzf', 'do': './install --bin' }
 endif
 Plug 'junegunn/fzf.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
@@ -32,25 +34,19 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-vividchalk'
 Plug 'vim-scripts/Align'
+Plug 'vim-syntastic/syntastic'
 
 Plug 'bluk/swifty-vim'
 Plug 'dag/vim-fish'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'jparise/vim-graphql'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 Plug 'uarun/vim-protobuf'
 Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
-
-" LSP
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
