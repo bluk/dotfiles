@@ -63,12 +63,28 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+set -o vi
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  cargo
+  direnv
+  docker
+  ember-cli
+  git
+  heroku
+  jsontools
+  node
+  rust
+  rustup
+  tmux
+  vi-mode
+  yarn
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,6 +102,25 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR='vim'
+
+export CLICOLOR=1
+export CLICOLOR_FORCE=1
+export LSCOLORS='gxfxCxDxbxegedabagacad'
+export VISUAL='vim'
+export PAGER='less'
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US.UTF-8'
+
+# Set OSTYPE
+if [ -z "$OSTYPE" ]; then
+  export OSTYPE (zsh -c 'echo ${OSTYPE}')
+fi
+
+if [ "$OSTYPE" = "linux-gnu" ]; then
+  gpgconf --create-socketdir || true
+fi
+
+export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -169,10 +204,40 @@ export PATH=$HOME/.cargo/bin:$PATH
 
 export DOCKER_CONTENT_TRUST=1
 
-# if string match -i -q "darwin*" $OSTYPE; and test $status -eq 0
-#   switch_gpg_agent_for_ssh
-# end
-#
+# Switch to GPG Agent for SSH
+
+function switch_gpg_agent_for_ssh
+{
+  # Launch gpg-agent with ssh agent
+  gpg-connect-agent /bye
+
+  # Point the SSH_AUTH_SOCK to the one handled by gpg-agent
+  if [ -S $HOME/.gnupg/S.gpg-agent.ssh ]; then
+    if [ -z "$OLD_SSH_AUTH_SOCK" ]; then
+      export OLD_SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+    fi
+    export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
+  elif [ -S "/run/user/${UID}/gnupg/S.gpg-agent.ssh" ]; then
+    if [ -z "$OLD_SSH_AUTH_SOCK" ]; then
+      export OLD_SSH_AUTH_SOCK=$SSH_AUTH_SOCK
+    fi
+    export SSH_AUTH_SOCK="/run/user/${UID}/gnupg/S.gpg-agent.ssh"
+  else
+    echo "$HOME/.gnupg/S.gpg-agent.ssh doesn't exist. Is gpg-agent running ?"
+  fi
+}
+
+function switch_ssh_agent_for_ssh
+{
+  if [ -n "$OLD_SSH_AUTH_SOCK" ]; then
+    export SSH_AUTH_SOCK=$OLD_SSH_AUTH_SOCK
+  fi
+}
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  switch_gpg_agent_for_ssh
+fi
+
 # alias tfp "check_terraform_workspace_and_git_branch 'terraform plan -out=changes.tfplan'"
 # alias tfa "check_terraform_workspace_and_git_branch 'terraform apply changes.tfplan'"
 # alias tfws 'terraform workspace select (git branch | grep "*" | sed "s/\* //")'
@@ -187,5 +252,5 @@ export PATH=$HOME/.fzf/bin:$PATH
 # Allow direnv. Needs to be near the end after prompts are set
 eval "$(direnv hook zsh)"
 
-# set -gx PATH "$HOME/.local/bin" "$HOME/.cabal/bin" "$HOME/.ghcup/bin" $PATH
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
