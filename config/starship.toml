@@ -1,0 +1,102 @@
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[kubernetes]
+disabled = true
+
+[directory]
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+
+[git_branch]
+symbol = "🎋 "
+
+[git_commit]
+commit_hash_len = 7
+only_detached = false
+
+[package]
+disabled = true
+
+[dart]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[helm]
+disabled = true
+
+[java]
+disabled = true
+
+[julia]
+disabled = true
+
+[nim]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[ruby]
+disabled = true
+
+[zig]
+disabled = true
+
+[memory_usage]
+disabled = false
+threshold = -1
+format = "using $symbol [${ram}( | ${swap})]($style) "
+
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[openstack]
+disabled = true
+
+[crystal]
+disabled = true
+
+[cmd_duration]
+min_time = 10
+show_milliseconds = true
+
+[battery]
+full_symbol = "🔋"
+charging_symbol = "⚡️"
+discharging_symbol = "💀"
+
+[time]
+disabled = false
+
+[status]
+disabled = false
