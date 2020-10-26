@@ -73,7 +73,11 @@ augroup toggle_relative_number
 augroup END
 
 " For debugger symbols and the like
-set signcolumn=yes
+if has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
 highlight SignColumn ctermfg=15 ctermbg=232 guifg=#DDEEFF guibg=#222222
 
 " Folds
@@ -85,16 +89,16 @@ set foldcolumn=4
 highlight Folded ctermfg=15 ctermbg=232 guifg=#DDEEFF guibg=#222222
 
 set viewoptions-=options
-augroup auto_save_folds
-  autocmd BufWritePost *
-        \   if expand('%') != '' && &buftype !~ 'nofile'
-        \|      mkview
-        \|  endif
-  autocmd BufRead *
-        \   if expand('%') != '' && &buftype !~ 'nofile'
-        \|      silent loadview
-        \|  endif
-augroup END
+" augroup auto_save_folds
+"   autocmd BufWritePost *
+"         \   if expand('%') != '' && &buftype !~ 'nofile'
+"         \|      mkview
+"         \|  endif
+"   autocmd BufRead *
+"         \   if expand('%') != '' && &buftype !~ 'nofile'
+"         \|      silent loadview
+"         \|  endif
+" augroup END
 
 " Highlight trailing whitespace
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
@@ -385,7 +389,11 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -455,6 +463,11 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of LS, ex: coc-tsserver
