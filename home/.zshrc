@@ -104,7 +104,6 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 
 export CLICOLOR=1
-export CLICOLOR_FORCE=1
 export LSCOLORS='gxfxCxDxbxegedabagacad'
 export VISUAL='vim'
 export PAGER='less'
