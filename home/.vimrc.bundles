@@ -4,6 +4,8 @@ end
 
 if expand('<sfile>') == '/etc/vim/vimrc.bundles'
   call plug#begin('/etc/vim/plugged')
+elseif has('nvim')
+  call plug#begin(stdpath('data') . '/plugged')
 else
   call plug#begin('~/.vim/plugged')
 endif

@@ -130,8 +130,10 @@ map <C-J> :bnext<CR>
 set tabpagemax=40
 
 " Mouse
-set mouse=
-set ttymouse=
+if !has('nvim')
+  set mouse=
+  set ttymouse=
+endif
 
 " Automatically read unchanged files if changed elsewhere
 set autoread
