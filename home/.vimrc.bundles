@@ -20,9 +20,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-obsession'
+" Repeat used in surround and unimpaired
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'

@@ -208,9 +208,7 @@ set cursorline
 highlight CursorLine term=none cterm=none ctermbg=235 guibg=#333333
 
 " Netrw
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_winsize = 20
+let g:netrw_liststyle = 1
 
 " File types
 autocmd FileType c,cpp,slang setlocal cindent
@@ -267,14 +265,6 @@ autocmd BufWritePre *.tf call terraform#fmt()
 
 " Markdown
 autocmd BufNewFile,BufRead *.md setlocal textwidth=80
-
-" NerdTree
-map <silent> <LocalLeader>nt :NERDTreeToggle<CR>
-map <silent> <LocalLeader>nr :NERDTree<CR>
-map <silent> <LocalLeader>nf :NERDTreeFind<CR>
-
-let NERDTreeIgnore=['\.pyc$', '\.o$', '\.class$', '\.lo$']
-let NERDTreeHijackNetrw = 1
 
 " FZF
 let $FZF_DEFAULT_COMMAND = 'find . -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/|.git/|.vim/|\.build/|target"'
