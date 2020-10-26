@@ -255,3 +255,9 @@ eval "$(direnv hook zsh)"
 
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
 export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+
+# function set_win_title(){
+#     echo -ne "\033]0; YOUR_WINDOW_TITLE_HERE \007"
+# }
+# precmd_functions+=(set_win_title)
+eval "$(starship init zsh)"
