@@ -18,7 +18,6 @@ else
 endif
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/tagbar'
-Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-obsession'
