@@ -10,7 +10,6 @@ endif
 
 Plug 'benmills/vimux'
 
-Plug 'AndrewRadev/splitjoin.vim'
 Plug 'google/vim-searchindex'
 if expand('<sfile>') == '/etc/vim/vimrc.bundles'
   Plug 'junegunn/fzf', { 'tag': '0.23.1', 'dir': '/etc/vim/fzf', 'do': './install --bin' }
