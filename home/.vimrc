@@ -267,7 +267,7 @@ autocmd BufWritePre *.tf call terraform#fmt()
 autocmd BufNewFile,BufRead *.md setlocal textwidth=80
 
 " FZF
-let $FZF_DEFAULT_COMMAND = 'find . -type f 2>/dev/null | grep -v -E "deps/|_build/|node_modules/|vendor/|.git/|.vim/|\.build/|target"'
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git" --glob "!_build" --glob "!deps" --glob "!node_modules" --glob "!vendor" --glob "!.vim" --glob "!.build" --glob "!target"'
 let $FZF_DEFAULT_OPTS = '--reverse'
 let g:fzf_tags_command = 'ctags -R --exclude=".git\|.svn\|log\|tmp\|db\|pkg" --extra=+f --langmap=Lisp:+.clj'
 let g:fzf_layout = { 'down': '~40%' }
@@ -307,14 +307,19 @@ map <silent> <leader>fg :GFiles<CR>
 map <silent> <leader>fb :Buffers<CR>
 map <silent> <leader>ft :Tags<CR>
 
-" Git grep word
-function! GitGrepWord()
-  cgetexpr system("git grep -n '" . expand("<cword>") . "'")
-  cwin
-  echo 'Number of matches: ' . len(getqflist())
-endfunction
-command! -nargs=0 GitGrepWord :call GitGrepWord()
-nnoremap <silent> <Leader>gw :GitGrepWord<CR>
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading\ --hidden\ --follow\ --smart-case
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+let g:rg_derive_root='true'
+
+command! -bang -nargs=* Rg
+      \ call fzf#vim#grep(
+      \   'rg --column --line-number --no-heading --color=always --ignore-case '.shellescape(<q-args>), 1,
+      \   <bang>0 ? fzf#vim#with_preview('up:60%')
+      \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+      \   <bang>0)
+nnoremap <leader>gw :Rg <C-R><C-W>
 
 " Vimux
 " let g:VimuxUseNearestPane = 1
@@ -328,13 +333,6 @@ map <silent> <leader>vz :call VimuxZoomRunner()<CR>
 map <silent> <leader>vc :VimuxClearRunnerHistory<CR>
 vmap <silent> <leader>vs "vy :call VimuxRunCommand(@v)<CR>
 nmap <silent> <leader>vs vip<LocalLeader>vs<CR>
-
-" vim-ack
-let g:AckAllFiles = 0
-let g:AckCmd = 'ack --type-add ruby=.feature --ignore-dir=tmp 2> /dev/null'
-
-" Ack
-map <LocalLeader>aw :Ack '<C-R><C-W>'
 
 " Visual * search, modified from: https://git.io/vFGBB
 function! s:VSetSearch()
@@ -504,15 +502,6 @@ autocmd FileType rust nmap <leader>b :Cbuild<CR>
 autocmd FileType rust nmap <leader>r :Crun<CR>
 autocmd FileType rust nmap <leader>t :Ctest<CR>
 autocmd FileType rust nmap <leader>ft :RustTest<CR>
-
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
 
 if executable('typescript-language-server')
     au User lsp_setup call lsp#register_server({
