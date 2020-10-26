@@ -37,7 +37,6 @@ Plug 'vim-scripts/Align'
 Plug 'vim-syntastic/syntastic'
 
 Plug 'dag/vim-fish'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'hashivim/vim-hashicorp-tools'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'pangloss/vim-javascript'
