@@ -256,15 +256,11 @@ autocmd FileType java setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 " C#
 autocmd FileType cs setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
 
-" Swift
-autocmd FileType swift setlocal smartindent tabstop=4 shiftwidth=4 softtabstop=4
-autocmd BufNewFile *.swift 0r ~/.vim/templates/swift.tpl
-
 " Shell script
 autocmd BufNewFile *.sh 0r ~/.vim/templates/bash_script.tpl
 
 " Autoremove trailing spaces when saving the buffer
-autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby,swift autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,elixir,eruby,html,java,javascript,php,ruby autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 autocmd BufNewFile,BufRead *.txt setlocal textwidth=78
 autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
@@ -568,25 +564,6 @@ autocmd FileType rust nmap <leader>r :Crun<CR>
 autocmd FileType rust nmap <leader>t :Ctest<CR>
 autocmd FileType rust nmap <leader>ft :RustTest<CR>
 
-" Swift
-autocmd FileType swift nmap <leader>b <Plug>(swift-spm-build)
-autocmd FileType swift nmap <leader>t <Plug>(swift-spm-test)
-autocmd FileType swift nmap <leader>ft <Plug>(swift-spm-test-function-only)
-autocmd FileType swift nmap <leader>sf <Plug>(swift-swiftformat)
-autocmd FileType swift nmap <leader>sl <Plug>(swift-swiftlint)
-autocmd FileType swift nmap <leader>sgx <Plug>(swift-spm-generate-xcodeproj)
-autocmd FileType swift nmap <leader>sgl <Plug>(swift-spm-test-generate-linuxmain)
-
-let g:swift_swiftformat_autosave = 1
-let g:swift_swiftlint_autosave = 1
-let g:swift_list_type_commands = {
-      \ 'Autosave': 'quickfix',
-      \ 'SwiftPMBuild': 'locationlist',
-      \ 'SwiftPMTest': 'locationlist'
-      \ }
-let g:swift_compiler_spm_path = "/Users/bryantluk/.swiftenv/shims/swift"
-let g:swift_compiler_swiftc_path = "/Users/bryantluk/.swiftenv/shims/swift"
-
 if executable('pyls')
     " pip install python-language-server
     au User lsp_setup call lsp#register_server({
@@ -646,16 +623,6 @@ if executable('rls')
         \ 'whitelist': ['rust'],
         \ })
 endif
-
-let g:sourcekit_lsp_pathname=$HOME . "/provision/sourcekit-lsp/.build/x86_64-apple-macosx/debug/sourcekit-lsp"
-if executable(g:sourcekit_lsp_pathname)
-  au User lsp_setup call lsp#register_server({
-        \ 'name': 'sourcekit-lsp',
-        \ 'cmd': {server_info->[g:sourcekit_lsp_pathname]},
-        \ 'whitelist': ['swift'],
-        \ })
-endif
-autocmd FileType swift setlocal omnifunc=lsp#complete
 
 " let g:lsp_log_verbose = 1
 " let g:lsp_log_file = expand('~/vim-lsp.log')

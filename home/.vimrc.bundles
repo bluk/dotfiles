@@ -36,7 +36,6 @@ Plug 'tpope/vim-vividchalk'
 Plug 'vim-scripts/Align'
 Plug 'vim-syntastic/syntastic'
 
-Plug 'bluk/swifty-vim'
 Plug 'dag/vim-fish'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
