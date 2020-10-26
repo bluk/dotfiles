@@ -120,7 +120,8 @@ if [ "$OSTYPE" = "linux-gnu" ]; then
   gpgconf --create-socketdir || true
 fi
 
-export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
+# Commented out due to VS Code
+# export DYLD_LIBRARY_PATH=/usr/local/lib:$DYLD_LIBRARY_PATH
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
