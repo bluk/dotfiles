@@ -168,7 +168,6 @@ set statusline+=%8(C(%c%V)%)\                    " column and virtual column
 set statusline+=%6(L(%l/%L)%)\                    " line
 set statusline+=%4(B(%o)%)\                       " byte
 set statusline+=%P\                               " percentage of file
-set statusline+=%1*%{fugitive#statusline()}%*\    " git status
 set statusline+=%1*[%{&ff}]%*-%1*%y%*\            " file type
 set statusline+=%1*%{ObsessionStatus()}%*
 set statusline+=%#warningmsg#
