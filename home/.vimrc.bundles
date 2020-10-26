@@ -17,7 +17,7 @@ else
   Plug 'junegunn/fzf', { 'tag': '0.23.1', 'dir': '~/.fzf', 'do': './install --bin' }
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdtree'
