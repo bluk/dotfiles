@@ -28,7 +28,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-vividchalk'
-Plug 'vim-scripts/Align'
 Plug 'vim-syntastic/syntastic'
 
 Plug 'dag/vim-fish'
