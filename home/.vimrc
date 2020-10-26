@@ -96,8 +96,6 @@ augroup auto_save_folds
         \|  endif
 augroup END
 
-let g:vim_markdown_folding_disabled = 1
-
 " Highlight trailing whitespace
 map <silent> <LocalLeader>ws :highlight clear ExtraWhitespace<CR>
 
@@ -269,11 +267,7 @@ autocmd BufNewFile,BufRead *.txt setlocal spell spelllang=en_us
 autocmd BufWritePre *.tf call terraform#fmt()
 
 " Markdown
-augroup markdown
-  au!
-  au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
-  autocmd BufNewFile,BufRead *.md setlocal textwidth=80
-augroup END
+autocmd BufNewFile,BufRead *.md setlocal textwidth=80
 
 " NerdTree
 map <silent> <LocalLeader>nt :NERDTreeToggle<CR>

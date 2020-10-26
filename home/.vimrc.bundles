@@ -11,7 +11,6 @@ endif
 Plug 'benmills/vimux'
 
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown'
 Plug 'google/vim-searchindex'
 if expand('<sfile>') == '/etc/vim/vimrc.bundles'
   Plug 'junegunn/fzf', { 'tag': '0.23.1', 'dir': '/etc/vim/fzf', 'do': './install --bin' }
@@ -38,7 +37,6 @@ Plug 'vim-syntastic/syntastic'
 
 Plug 'dag/vim-fish'
 Plug 'hashivim/vim-hashicorp-tools'
-Plug 'jtratner/vim-flavored-markdown'
 Plug 'pangloss/vim-javascript'
 Plug 'pearofducks/ansible-vim'
 Plug 'uarun/vim-protobuf'
