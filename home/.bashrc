@@ -110,13 +110,6 @@ export NOKOGIRI_USE_SYSTEM_LIBRARIES=Y
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 
-## Node
-
-export PATH="$HOME/.nodenv/bin:$PATH"
-eval "$(nodenv init -)"
-export PATH=$PATH:~/node_modules/.bin
-export PATH=$PATH:~/.npm-global/bin
-
 ## Python
 
 export PATH="$HOME/.pyenv/bin:$PATH"
@@ -197,3 +190,5 @@ fi
 eval "$(direnv hook bash)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

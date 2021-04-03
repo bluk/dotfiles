@@ -189,13 +189,6 @@ export NOKOGIRI_USE_SYSTEM_LIBRARIES="Y"
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 
-## Node
-
-export PATH=$HOME/.nodenv/bin:$PATH
-eval "$(nodenv init -)"
-export PATH=$HOME/.node_modules/bin:$PATH
-export PATH=$HOME/.npm-global/bin:$PATH
-
 ## Rust
 
 export PATH=$HOME/.cargo/bin:$PATH
@@ -260,3 +253,5 @@ export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 # }
 # precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"

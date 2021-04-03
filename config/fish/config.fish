@@ -86,16 +86,6 @@ if which rbenv > /dev/null
   and source (rbenv init - | psub)
 end
 
-## Node
-
-set -gx PATH "$HOME/.nodenv/bin" $PATH
-if which nodenv > /dev/null
-  status --is-interactive
-  and source (nodenv init - | psub)
-end
-# set -gx PATH "$HOME/.node_modules/bin" $PATH
-set -gx PATH "$HOME/.npm-global/bin" $PATH
-
 ## Rust
 #
 set -gx PATH "$HOME/.cargo/bin" $PATH
@@ -133,3 +123,5 @@ end
 
 # Allow direnv. Needs to be near the end after prompts are set
 eval (direnv hook fish)
+set -gx VOLTA_HOME "$HOME/.volta"
+set -gx PATH "$VOLTA_HOME/bin" $PATH
