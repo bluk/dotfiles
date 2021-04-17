@@ -87,9 +87,9 @@ export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
 
 ## Go
 
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$HOME/.goenv/bin:$PATH"
-eval "$(goenv init -)"
+# export GOENV_ROOT="$HOME/.goenv"
+# export PATH="$HOME/.goenv/bin:$PATH"
+# eval "$(goenv init -)"
 
 export GOPATH=~/go
 export PATH=$GOPATH/bin:$PATH
@@ -107,14 +107,14 @@ export WORK_ON=~/.virtualenv/
 ## Ruby
 
 export NOKOGIRI_USE_SYSTEM_LIBRARIES=Y
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
 
 ## Python
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 # Docker
 
@@ -189,6 +189,5 @@ fi
 # Allow direnv. Needs to be near the end after prompts are set
 eval "$(direnv hook bash)"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"

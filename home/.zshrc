@@ -83,7 +83,6 @@ plugins=(
   rustup
   tmux
   vi-mode
-  yarn
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -155,9 +154,10 @@ export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
 
 ## Go
 
-export GOENV_ROOT=$HOME/.goenv
-export PATH=$HOME/.goenv/bin:$PATH
-eval "$(goenv init -)"
+# export GOENV_ROOT=$HOME/.goenv
+# export PATH=$HOME/.goenv/bin:$PATH
+# eval "$(goenv init -)"
+
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
 
@@ -186,8 +186,8 @@ export PATH=$GOPATH/bin:$PATH
 ## Ruby
 
 export NOKOGIRI_USE_SYSTEM_LIBRARIES="Y"
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+# export PATH=$HOME/.rbenv/bin:$PATH
+# eval "$(rbenv init -)"
 
 ## Rust
 
@@ -246,7 +246,6 @@ export PATH=$HOME/.fzf/bin:$PATH
 eval "$(direnv hook zsh)"
 
 export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
-export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
 # function set_win_title(){
 #     echo -ne "\033]0; YOUR_WINDOW_TITLE_HERE \007"

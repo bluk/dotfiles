@@ -49,11 +49,11 @@ alias j8 "set -gx JAVA_HOME (/usr/libexec/java_home -v 1.8); java -version"
 ## Go
 
 set -gx GOENV_ROOT "$HOME/.goenv"
-set -gx PATH "$HOME/.goenv/bin" $PATH
-if which goenv > /dev/null
-  status --is-interactive
-  and source (goenv init - | psub)
-end
+# set -gx PATH "$HOME/.goenv/bin" $PATH
+# if which goenv > /dev/null
+#   status --is-interactive
+#   and source (goenv init - | psub)
+# end
 
 set -gx GOPATH ~/go
 set -gx PATH "$GOPATH/bin" $PATH
@@ -61,30 +61,30 @@ set -gx PATH "$GOPATH/bin" $PATH
 ## Swift
 
 set -gx SWIFTENV_ROOT "$HOME/.swiftenv"
-set -gx PATH $SWIFTENV_ROOT/bin $PATH
-if which swiftenv > /dev/null
-  status --is-interactive
-  and source (swiftenv init - | psub)
-end
+# set -gx PATH $SWIFTENV_ROOT/bin $PATH
+# if which swiftenv > /dev/null
+#   status --is-interactive
+#   and source (swiftenv init - | psub)
+# end
 
 ## Python
 
 set -gx WORK_ON ~/.virtualenv/
-set -gx PATH "$HOME/.pyenv/bin" $PATH
-if which pyenv > /dev/null
-  status --is-interactive
-  and source (pyenv init - | psub)
-  and source (pyenv virtualenv-init - | psub)
-end
+# set -gx PATH "$HOME/.pyenv/bin" $PATH
+# if which pyenv > /dev/null
+#   status --is-interactive
+#   and source (pyenv init - | psub)
+#   and source (pyenv virtualenv-init - | psub)
+# end
 
 ## Ruby
 
 set -gx NOKOGIRI_USE_SYSTEM_LIBRARIES Y
-set -gx PATH "$HOME/.rbenv/bin" $PATH
-if which rbenv > /dev/null
-  status --is-interactive
-  and source (rbenv init - | psub)
-end
+# set -gx PATH "$HOME/.rbenv/bin" $PATH
+# if which rbenv > /dev/null
+#   status --is-interactive
+#   and source (rbenv init - | psub)
+# end
 
 ## Rust
 #
