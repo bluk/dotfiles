@@ -79,3 +79,5 @@
 	helper = gcloud.sh
 [init]
 	defaultBranch = trunk
+[pull]
+	rebase = true
