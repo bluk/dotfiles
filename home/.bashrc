@@ -60,8 +60,6 @@ fi
 # Aliases
 
 alias dockernotary="notary -s https://notary.docker.io -d ~/.docker/trust"
-alias cdm="cd ~/Code/monorepo"
-alias spg="swift package generate-xcodeproj"
 alias ll="ls -alF"
 alias la="ls -la"
 alias l='ls -CF'
@@ -70,51 +68,20 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# Add scripts
-
-export PATH=$PATH:~/scripts
-export PATH=$PATH:~/Code/bin
-export PATH=$PATH:~/Applications
-export PATH=$PATH:~/.fastlane/bin
-
 # Language Specific
 
-## Java
+## Node
 
-export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
-# alias j10="export JAVA_HOME=`/usr/libexec/java_home -v 10`; java -version"
-# alias j8="export JAVA_HOME=`/usr/libexec/java_home -v 1.8`; java -version"
-
-## Go
-
-# export GOENV_ROOT="$HOME/.goenv"
-# export PATH="$HOME/.goenv/bin:$PATH"
-# eval "$(goenv init -)"
-
-export GOPATH=~/go
-export PATH=$GOPATH/bin:$PATH
-
-## Swift
-
-export SWIFTENV_ROOT="$HOME/.swiftenv"
-export PATH="$SWIFTENV_ROOT/bin:$PATH"
-eval "$(swiftenv init -)"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 ## Python
 
 export WORK_ON=~/.virtualenv/
 
-## Ruby
+## Rust
 
-export NOKOGIRI_USE_SYSTEM_LIBRARIES=Y
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# eval "$(rbenv init -)"
-
-## Python
-
-# export PATH="$HOME/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Docker
 
@@ -177,9 +144,6 @@ alias tfa="check_terraform_workspace_and_git_branch 'terraform apply plan.change
 alias tfws='terraform workspace select $(git branch | grep "*" | sed "s/\* //")'
 alias tfi="terraform init -backend-config=backend.secret.tfvars"
 
-alias fdbstop="sudo launchctl unload -w /Library/LaunchDaemons/com.foundationdb.fdbmonitor.plist"
-alias fdbstart="sudo launchctl load -w /Library/LaunchDaemons/com.foundationdb.fdbmonitor.plist"
-
 # Source local changes
 
 if [ -f ~/.local_config/.bashrc ]; then
@@ -188,6 +152,3 @@ fi
 
 # Allow direnv. Needs to be near the end after prompts are set
 eval "$(direnv hook bash)"
-
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
