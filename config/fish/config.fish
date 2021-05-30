@@ -40,6 +40,13 @@ set -gx PATH $PATH ~/Code/bin ~/Applications ~/.fastlane/bin
 
 # Language Specific
 
+# set -gx PATH /usr/local/anaconda3/bin/ $PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /Users/bryantluk/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
 ## Java
 
 set -gx MAVEN_OPTS "-Xmx512M -XX:MaxPermSize=128M"
@@ -70,12 +77,6 @@ set -gx SWIFTENV_ROOT "$HOME/.swiftenv"
 ## Python
 
 set -gx WORK_ON ~/.virtualenv/
-# set -gx PATH "$HOME/.pyenv/bin" $PATH
-# if which pyenv > /dev/null
-#   status --is-interactive
-#   and source (pyenv init - | psub)
-#   and source (pyenv virtualenv-init - | psub)
-# end
 
 ## Ruby
 
@@ -123,5 +124,7 @@ end
 
 # Allow direnv. Needs to be near the end after prompts are set
 eval (direnv hook fish)
+
+set -gx PATH "$HOME/.local/bin" "$HOME/.cabal/bin" "$HOME/.ghcup/bin" $PATH
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH

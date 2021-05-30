@@ -146,6 +146,11 @@ export PATH=$PATH:$HOME/Code/bin:$HOME/Applications:$HOME/.fastlane/bin
 
 # Language Specific
 
+# Node
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 ## Java
 
 export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=128M"
@@ -182,12 +187,6 @@ export PATH=$GOPATH/bin:$PATH
 #   and source (pyenv init - | psub)
 #   and source (pyenv virtualenv-init - | psub)
 # end
-
-## Ruby
-
-export NOKOGIRI_USE_SYSTEM_LIBRARIES="Y"
-# export PATH=$HOME/.rbenv/bin:$PATH
-# eval "$(rbenv init -)"
 
 ## Rust
 
@@ -252,5 +251,3 @@ export PATH=$HOME/.local/bin:$HOME/.cabal/bin:$HOME/.ghcup/bin:$PATH
 # }
 # precmd_functions+=(set_win_title)
 eval "$(starship init zsh)"
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
