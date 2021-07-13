@@ -73,11 +73,7 @@ augroup toggle_relative_number
 augroup END
 
 " For debugger symbols and the like
-if has("patch-8.1.1564")
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+set signcolumn=yes
 highlight SignColumn ctermfg=15 ctermbg=232 guifg=#DDEEFF guibg=#222222
 
 " Folds
