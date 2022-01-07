@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/bryantluk/.oh-my-zsh"
 
@@ -71,7 +73,6 @@ set -o vi
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  cargo
   direnv
   docker
   ember-cli
@@ -80,7 +81,6 @@ plugins=(
   jsontools
   node
   rust
-  rustup
   tmux
   vi-mode
 )
